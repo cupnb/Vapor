@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>0</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Serializable</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>130</y>
+      <w>560</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Library
+-
+-gameLibrary:Game[0..*] {unique}
+-tagLibrary:Tag[0..*] {unique}
+-storeLibrary:Store[0..*] {unique}
+-genreLibrary:Genre[0..*] {unique}
+-
++Library()
+
++addGame(in g:Game)
++getGame(in id:Integer):Game[0..1]
++removeGame(in id:Integer)
+
+*Imagine getters, setters and removers here*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>40</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>350</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Store
+-
+-id:Integer
+-name:String
+-link:String [0..1]
+-backgroundImage[0..1]
+-
++Store(in id:Integer, in name:String, in link:String, in backgroundImage:String)
+
++getId():Integer
++getName():String
++getLink():String[0..1]
++getBackgroundImage():String[0..1]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>560</y>
+      <w>530</w>
+      <h>500</h>
+    </coordinates>
+    <panel_attributes>Game
+-
+-id:Integer
+-name:String
+-description:String
+
+-release:LocalDate
+
+-platform:Integer[1..*]
+-genre:Integer[1..*]
+-tag:Integer[1..*]
+-store:Integer[1..*]
+
+-rating:Real{0 &lt;= rating &lt;= 10}
+-metacritic:Integer{0 &lt;= metacritic &lt;= 100}
+
+-saturatedColor:Color
+-dominantColor:Color
+
+-backgroundImage:String
+-screenshots:String[0..*]
+--
++Game(json:Json)
+
+*Imagine getters here*
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>130</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Tag
+-
+-id:Integer
+-name:String
+-description:String 
+-backgroundImage:String [0..1]
+-
++Tag(in id:Integer, in name:String, in description:String, in backgroundImage:String)
+
++getId():Integer
++getName():String
++getDescription():String
++getBackgroundImage():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>570</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Genre
+-
+-id:Integer
+-name:String
+-description:String
+-backgroundImage:String
+-
++Genre(in id:Integer, in name:String, in link:String, in backgroundImage:String)
+
++getId():Integer
++getName():String
++getDescription():String
++getBackgroundImage():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>10</y>
+      <w>830</w>
+      <h>670</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;810.0;10.0;810.0;650.0;800.0;650.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>10</y>
+      <w>830</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;810.0;10.0;810.0;430.0;800.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>10</y>
+      <w>830</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;810.0;10.0;810.0;220.0;800.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>10</y>
+      <w>830</w>
+      <h>1020</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;810.0;10.0;810.0;1000.0;140.0;1000.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>790</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Publisher
+-
+-id:Integer
+-name:String
+-description:String
+-backgroundImage:String
+-
++Publisher(in id:Integer, in name:String, in link:String, in backgroundImage:String)
+
++getId():Integer
++getName():String
++getDescription():String
++getBackgroundImage():String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>10</y>
+      <w>830</w>
+      <h>900</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;810.0;10.0;810.0;880.0;800.0;880.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>210</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>210</y>
+      <w>240</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>220.0;230.0;150.0;230.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>210</y>
+      <w>240</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>220.0;450.0;150.0;450.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>210</y>
+      <w>240</w>
+      <h>700</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>220.0;670.0;150.0;670.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>210</y>
+      <w>170</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>90.0;450.0;150.0;450.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
