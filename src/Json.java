@@ -38,7 +38,7 @@ public class Json {
     }
 
 
-    private Object[] getValue(String str, int start_index) throws IllegalArgumentException {
+    private Object[] getValue(String str, int start_index) {
         verifyIndex(str, start_index);
         Object[] res = new Object[2];
         int end_index;
@@ -85,7 +85,7 @@ public class Json {
     }
 
 
-    private Object[] getList(String str, int startIndex) throws IllegalArgumentException {
+    private Object[] getList(String str, int startIndex) {
         int s = startIndex + 1;
         int e;
         LinkedList<Object> result = new LinkedList<>();
@@ -164,28 +164,28 @@ public class Json {
             }
         }
         catch (Exception e) {
-            throw new IllegalArgumentException("String is not a Json");
+            throw new IllegalArgumentException(String.format("Couldn't parse Number: %s", subString));
         }
         return res;
     }
 
 
-    private void verifyIndex(String str, int index) throws IllegalArgumentException {
+    private void verifyIndex(String str, int index) {
         if(index >= str.length()) {
-            throw new IllegalArgumentException("String is not a Json");
+            throw new IllegalArgumentException("Index out of range");
         }
     }
 
 
-    private void verifyChar(String str, int index, char ch) throws IllegalArgumentException {
+    private void verifyChar(String str, int index, char ch) {
         verifyIndex(str, index);
         if(str.charAt(index) != ch) {
-            throw new IllegalArgumentException("String is not a Json");
+            throw new IllegalArgumentException(String.format("Expected %c at %d", ch, index));
         }
     }
 
 
-    private int getSubJson(String str, int start) throws IllegalArgumentException {
+    private int getSubJson(String str, int start) {
         int i = start + 1;
         while (true) {
             verifyIndex(str, i);
@@ -208,7 +208,7 @@ public class Json {
     }
 
 
-    private int getSubString(String str, int start) throws IllegalArgumentException {
+    private int getSubString(String str, int start) {
         int i = start + 1;
         while (true) {
             verifyIndex(str, i);
