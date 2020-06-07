@@ -21,6 +21,12 @@ public class Rawg {
     }
 
 
+    public String gameRequest(int id) throws IOException {
+        URL url = new URL(String.format("https://api.rawg.io/api/games/%d", id));
+        return pushGetRequest(url);
+    }
+
+
     private String pushGetRequest(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
