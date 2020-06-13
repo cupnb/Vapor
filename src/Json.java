@@ -6,9 +6,7 @@ public class Json {
     public Map<String, Object> content;
     public Json(String str) {
        content = new HashMap<>();
-       System.out.println(getSubJson(str, 0));
        getElements(str.substring(1, getSubJson(str, 0)));
-       System.out.println("DONE");
     }
 
 
