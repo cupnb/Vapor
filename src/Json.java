@@ -214,7 +214,14 @@ public class Json {
         while (true) {
             verifyIndex(str, i);
             if (str.charAt(i) == '"') {
-                return i;
+                if (i > 0) {
+                    if (str.charAt(i - 1) != '\\') {
+                        return i;
+                    }
+                }
+                else {
+                    return i;
+                }
             }
             i++;
         }
