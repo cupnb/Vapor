@@ -7,15 +7,8 @@ public class Main {
     private static void test() {
         System.out.println(System.nanoTime());
         try {
-            Rawg r = new Rawg();
-            String s = r.searchRequest(5, "Pubg");
-            try {
-                Json j = new Json(s);
-                System.out.println("ALL DONE");
-            }
-            catch (Exception e) {
-                System.out.println(e.getCause());
-            }
+            suggestionRequest sr = new suggestionRequest("Rainbow");
+            sr.start();
         }
         catch (Exception e) {
             System.out.println("ERROR");
