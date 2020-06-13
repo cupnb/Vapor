@@ -11,6 +11,9 @@ public class Json {
 
 
     private void getElements(String str) throws IllegalArgumentException {
+        if (str.equals("") || str.equals(" ")) {
+            return;
+        }
         String current_key;
         Object current_value;
         int s = 0;
