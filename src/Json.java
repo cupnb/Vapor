@@ -135,7 +135,7 @@ public class Json {
 
         }
         Object[] res = new Object[2];
-        res[0] = result;
+        res[0] = result.toArray();
         res[1] = s;
         return res;
     }
