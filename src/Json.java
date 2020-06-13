@@ -218,4 +218,11 @@ public class Json {
             i++;
         }
     }
+
+
+    public Object getContent(String key) {
+        return content.get(key);
+    }
+
+
 }
