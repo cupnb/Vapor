@@ -44,8 +44,6 @@ public class Rawg {
         }
         in.close();
         con.disconnect();
-        System.out.println(status);
-        System.out.print(content);
         return content.toString();
     }
 }

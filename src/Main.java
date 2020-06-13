@@ -5,6 +5,7 @@ public class Main {
     }
 
     private static void test() {
+        System.out.println(System.nanoTime());
         try {
             Rawg r = new Rawg();
             String s = r.searchRequest(5, "Pubg");
