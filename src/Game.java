@@ -6,10 +6,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Game {
-    int id;
-    String name;
-    String description;
+public class Game extends LibraryObject{
     LocalDate release;
 
     int[] platforms;
@@ -20,20 +17,21 @@ public class Game {
     double rating;
     int metacritic;
 
-    String backgroundImage;
-    boolean isImageLocal;
     String[] screenshots;
+
 
 
     public Game(int id) {
         try {
+            this.id = id;
+            classString = "game";
             Rawg rawg = new Rawg();
             String stringRes = rawg.gameRequest(id);
             Json json = new Json(stringRes);
 
             Object[] curArray;
 
-            this.id = id;
+
             isImageLocal = false;
             name = (String) json.getContent("name");
             description = (String) json.getContent("description");
@@ -88,62 +86,24 @@ public class Game {
     }
 
 
-    public void downloadImage() {
-        if(backgroundImage == null || backgroundImage.equals("") || isImageLocal) {
-            return;
-        }
-        try {
-            String destination = String.format("temp/game_%d.jpg", id);
-            URL url = new URL(backgroundImage);
-            RenderedImage image = ImageIO.read(url);
-            ImageIO.write(image, "JPG", new File(destination));
-            isImageLocal = true;
-            backgroundImage = destination;
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public boolean equals(Game o) {
+        return o.getId() == id;
     }
 
 
-    public void storeImage() {
-        if(backgroundImage == null || backgroundImage.equals("")) {
-            return;
-        }
-        if(!isImageLocal) {
-            downloadImage();
-        }
-        if(!isImageLocal) {
-            return;
-        }
-        try {
-            String destination = String.format("images/games/%d.jpg", id);
-            RenderedImage image = ImageIO.read(new File(backgroundImage));
-            ImageIO.write(image, "JPG", new File(destination));
-            backgroundImage = destination;
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public int[] getPlatforms() {
+        return platforms;
     }
 
+    public int[] getGenres() {
+        return genres;
+    }
 
-    public Image loadImage() {
-        if(backgroundImage == null || backgroundImage.equals("")) {
-            return null;
-        }
-        if(!isImageLocal) {
-            downloadImage();
-        }
-        if(!isImageLocal) {
-            return null;
-        }
-        try {
-            return ImageIO.read(new File(backgroundImage));
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public int[] getTags() {
+        return tags;
+    }
+
+    public int[] getStores() {
+        return stores;
     }
 }
