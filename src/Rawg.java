@@ -7,6 +7,8 @@ import java.net.URL;
 
 public class Rawg {
 
+    static String baseURL = "https://rawg.io/api";
+
     /**
      * Searches the Rawg-Library for Games with the given Title.
      *
@@ -46,7 +48,7 @@ public class Rawg {
 
 
     public String gameRequest(int id) throws IOException {
-        URL url = new URL(String.format("https://api.rawg.io/api/games/%d", id));
+        URL url = new URL(String.format("%s/games/%d", baseURL, id));
         return pushGetRequest(url);
     }
 
