@@ -16,7 +16,31 @@ public class Rawg {
      * @return Json file with all results
      */
     public String searchRequest(int amount, String query) throws IOException {
-        URL url = new URL(String.format("https://rawg.io/api/games?page_size=%d&search=%s", amount, query));
+        URL url = new URL(String.format("%s/games?page_size=%d&search=%s", baseURL, amount, query));
+        return pushGetRequest(url);
+    }
+
+
+    public String genreRequest(int id) throws IOException {
+        URL url = new URL(String.format("%s/genres/%d", baseURL, id));
+        return pushGetRequest(url);
+    }
+
+
+    public String platformRequest(int id) throws IOException {
+        URL url = new URL(String.format("%s/platforms/%d", baseURL, id));
+        return pushGetRequest(url);
+    }
+
+
+    public String storeRequest(int id) throws IOException {
+        URL url = new URL(String.format("%s/stores/%d", baseURL, id));
+        return pushGetRequest(url);
+    }
+
+
+    public String tagRequest(int id) throws IOException {
+        URL url = new URL(String.format("%s/tags/%d", baseURL, id));
         return pushGetRequest(url);
     }
 
