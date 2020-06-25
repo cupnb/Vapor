@@ -58,7 +58,7 @@ public class Game extends LibraryObject{
             curArray = (Object[]) json.getContent("stores");
             stores = new int[curArray.length];
             for(int i = 0; i < curArray.length; i++) {
-                stores[i] = (int) ((Json) curArray[i]).getContent("id");
+                stores[i] = (int) ((Json) ((Json) curArray[i]).getContent("store")).getContent("id");
             }
 
             rating = (double) json.getContent("rating");
