@@ -2,9 +2,10 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
-public abstract class LibraryObject {
+public abstract class LibraryObject implements Serializable {
     String backgroundImage;
     boolean isImageLocal;
     String classString;
