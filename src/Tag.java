@@ -5,7 +5,9 @@ public class Tag extends LibraryObject{
             classString = "tag";
             Rawg rawg = new Rawg();
             Json result = new Json(rawg.tagRequest(id));
-            System.out.println();
+            name = (String) result.getContent("name");
+            description = (String) result.getContent("description");
+            backgroundImage = (String) result.getContent("image_background");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
