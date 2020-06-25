@@ -6,7 +6,9 @@ public class Platform extends LibraryObject{
             classString = "platform";
             Rawg rawg = new Rawg();
             Json result = new Json(rawg.platformRequest(id));
-            System.out.println();
+            name = (String) result.getContent("name");
+            description = (String) result.getContent("description");
+            backgroundImage = (String) result.getContent("image_background");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
