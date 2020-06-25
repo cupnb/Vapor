@@ -101,4 +101,12 @@ public class Game extends LibraryObject{
     public int[] getStores() {
         return stores;
     }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public int getMetacritic() {
+        return metacritic;
+    }
 }
