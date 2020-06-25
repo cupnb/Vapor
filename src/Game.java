@@ -1,8 +1,3 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
