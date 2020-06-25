@@ -16,6 +16,11 @@ public abstract class LibraryObject implements Serializable {
     static String resourcePath = "resources";
 
 
+    public boolean equals(int id) {
+        return this.id == id;
+    }
+
+
     public void downloadImage() {
         if(backgroundImage == null || backgroundImage.equals("") || isImageLocal) {
             return;
@@ -75,13 +80,15 @@ public abstract class LibraryObject implements Serializable {
         }
     }
 
-
     public int getId() {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public boolean equals(int id) {
-        return this.id == id;
+    public String getDescription() {
+        return description;
     }
 }
