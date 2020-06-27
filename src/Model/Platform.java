@@ -1,10 +1,13 @@
-public class Tag extends LibraryObject{
-    public Tag(int id) {
+package Model;
+
+public class Platform extends LibraryObject{
+
+    public Platform(int id) {
         try {
             this.id = id;
-            classString = "tag";
+            classString = "platform";
             Rawg rawg = new Rawg();
-            Json result = new Json(rawg.tagRequest(id));
+            Json result = new Json(rawg.platformRequest(id));
             name = (String) result.getContent("name");
             description = (String) result.getContent("description");
             backgroundImage = (String) result.getContent("image_background");

@@ -21,17 +21,17 @@ Serializable</panel_attributes>
       <w>560</w>
       <h>240</h>
     </coordinates>
-    <panel_attributes>Library
+    <panel_attributes>Model.Library
 -
--gameLibrary:Game[0..*] {unique}
--tagLibrary:Tag[0..*] {unique}
--storeLibrary:Store[0..*] {unique}
--genreLibrary:Genre[0..*] {unique}
+-gameLibrary:Model.Game[0..*] {unique}
+-tagLibrary:Model.Tag[0..*] {unique}
+-storeLibrary:Model.Store[0..*] {unique}
+-genreLibrary:Model.Genre[0..*] {unique}
 -
-+Library()
++Model.Library()
 
-+addGame(in g:Game)
-+getGame(in id:Integer):Game[0..1]
++addGame(in g:Model.Game)
++getGame(in id:Integer):Model.Game[0..1]
 +removeGame(in id:Integer)
 
 *Imagine getters, setters and removers here*
@@ -58,14 +58,14 @@ Serializable</panel_attributes>
       <w>530</w>
       <h>200</h>
     </coordinates>
-    <panel_attributes>Store
+    <panel_attributes>Model.Store
 -
 -id:Integer
 -name:String
 -link:String [0..1]
 -backgroundImage[0..1]
 -
-+Store(in id:Integer, in name:String, in link:String, in backgroundImage:String)
++Model.Store(in id:Integer, in name:String, in link:String, in backgroundImage:String)
 
 +getId():Integer
 +getName():String
@@ -81,7 +81,7 @@ Serializable</panel_attributes>
       <w>530</w>
       <h>500</h>
     </coordinates>
-    <panel_attributes>Game
+    <panel_attributes>Model.Game
 -
 -id:Integer
 -name:String
@@ -103,7 +103,7 @@ Serializable</panel_attributes>
 -backgroundImage:String
 -screenshots:String[0..*]
 --
-+Game(json:Json)
++Model.Game(json:Model.Json)
 
 *Imagine getters here*
 
@@ -119,14 +119,14 @@ Serializable</panel_attributes>
       <w>530</w>
       <h>200</h>
     </coordinates>
-    <panel_attributes>Tag
+    <panel_attributes>Model.Tag
 -
 -id:Integer
 -name:String
 -description:String 
 -backgroundImage:String [0..1]
 -
-+Tag(in id:Integer, in name:String, in description:String, in backgroundImage:String)
++Model.Tag(in id:Integer, in name:String, in description:String, in backgroundImage:String)
 
 +getId():Integer
 +getName():String
@@ -142,14 +142,14 @@ Serializable</panel_attributes>
       <w>530</w>
       <h>200</h>
     </coordinates>
-    <panel_attributes>Genre
+    <panel_attributes>Model.Genre
 -
 -id:Integer
 -name:String
 -description:String
 -backgroundImage:String
 -
-+Genre(in id:Integer, in name:String, in link:String, in backgroundImage:String)
++Model.Genre(in id:Integer, in name:String, in link:String, in backgroundImage:String)
 
 +getId():Integer
 +getName():String

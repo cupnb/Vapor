@@ -1,3 +1,5 @@
+package Model;
+
 public class Store extends LibraryObject{
     int gamesCount;
     String domain;

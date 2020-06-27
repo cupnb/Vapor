@@ -1,11 +1,13 @@
-public class Platform extends LibraryObject{
+package Model;
 
-    public Platform(int id) {
+public class Genre extends LibraryObject{
+
+    public Genre(int id) {
         try {
             this.id = id;
-            classString = "platform";
+            classString = "genre";
             Rawg rawg = new Rawg();
-            Json result = new Json(rawg.platformRequest(id));
+            Json result = new Json(rawg.genreRequest(id));
             name = (String) result.getContent("name");
             description = (String) result.getContent("description");
             backgroundImage = (String) result.getContent("image_background");

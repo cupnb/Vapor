@@ -1,3 +1,6 @@
+import Controller.Controller;
+import Model.suggestionRequest;
+
 public class Main {
 
     public static void main(String[] args) {

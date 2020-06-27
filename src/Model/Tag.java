@@ -1,11 +1,12 @@
-public class Genre extends LibraryObject{
+package Model;
 
-    public Genre(int id) {
+public class Tag extends LibraryObject{
+    public Tag(int id) {
         try {
             this.id = id;
-            classString = "genre";
+            classString = "tag";
             Rawg rawg = new Rawg();
-            Json result = new Json(rawg.genreRequest(id));
+            Json result = new Json(rawg.tagRequest(id));
             name = (String) result.getContent("name");
             description = (String) result.getContent("description");
             backgroundImage = (String) result.getContent("image_background");

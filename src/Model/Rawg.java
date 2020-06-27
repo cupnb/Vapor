@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,12 +12,12 @@ public class Rawg {
     static String baseURL = "https://rawg.io/api";
 
     /**
-     * Searches the Rawg-Library for Games with the given Title.
+     * Searches the Model.Rawg-Model.Library for Games with the given Title.
      *
      * @param amount Amount of Results the Request is returning
      * @param query String the method will be searching for
      *
-     * @return Json file with all results
+     * @return Model.Json file with all results
      */
     public String searchRequest(int amount, String query) throws IOException {
         URL url = new URL(String.format("%s/games?page_size=%d&search=%s", baseURL, amount, query));

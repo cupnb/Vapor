@@ -1,3 +1,4 @@
+package Model;
 
 public class suggestionRequest extends Thread{
     String query;
