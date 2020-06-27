@@ -157,4 +157,50 @@ public class Library {
         }
         return false;
     }
+
+
+    public Game getGame(int id) {
+        for (Game game : games) {
+            if (game.equals(id)) {
+                return game;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Game Object of id " + id);
+    }
+
+    public Store getStore(int id) {
+        for (Store store : stores) {
+            if (store.equals(id)) {
+                return store;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Store Object of id " + id);
+    }
+
+    public Platform getPlatform(int id) {
+        for (Platform platform : platforms) {
+            if (platform.equals(id)) {
+                return platform;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Platform Object of id " + id);
+    }
+
+    public Tag getTag(int id) {
+        for (Tag tag : tags) {
+            if (tag.equals(id)) {
+                return tag;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Tag Object of id " + id);
+    }
+
+    public Genre getGenre(int id) {
+        for (Genre genre : genres) {
+            if (genre.equals(id)) {
+                return genre;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Genre Object of id " + id);
+    }
 }
