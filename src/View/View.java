@@ -4,6 +4,8 @@ import Controller.Controller;
 import Model.Game;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class View extends JFrame {
 
@@ -35,8 +37,8 @@ public class View extends JFrame {
         gamesList.updateGames(games);
     }
 
-    public void updateGame(Game game){
-        gameView.updateGame(game);
+    public void updateGame(String[] gameInfo, ImageIcon image){
+        gameView.updateGame(gameInfo, image);
     }
 
 }

@@ -8,12 +8,11 @@ import java.awt.image.BufferedImage;
 
 public class GameView extends JPanel {
 
-
     SpringLayout layout;
     private BufferedImage image;
-    private JPanel ratingPanel;
-    private JPanel platformStoresPanel;
-    private JPanel genreTagPanel;
+
+    private JPanel table;
+    private JPanel tablePanel;
     private JLabel titleImage;
     private JLabel title;
     private JLabel release;
@@ -39,15 +38,13 @@ public class GameView extends JPanel {
         release = new JLabel();
         description  = new JTextPane();
 
-        ratingPanel = new JPanel();
+        tablePanel = new JPanel();
+        table = new JPanel(new GridLayout(0, 2));
+
         rating = new JLabel();
         metacritic = new JLabel();
-
-        genreTagPanel = new JPanel();
         genres = new JLabel();
         tags = new JLabel();
-
-        platformStoresPanel = new JPanel();
         platforms = new JLabel();
         stores = new JLabel();
 
@@ -56,50 +53,35 @@ public class GameView extends JPanel {
         add(release);
         add(description);
 
-        ratingPanel.add(rating);
-        ratingPanel.add(metacritic);
-        genreTagPanel.add(genres);
-        genreTagPanel.add(tags);
-        platformStoresPanel.add(platforms);
-        platformStoresPanel.add(stores);
+        table.add(new JLabel("Ratings: ", SwingConstants.RIGHT));
+        table.add(rating);
+        table.add(new JLabel("Metacritic: ", SwingConstants.RIGHT));
+        table.add(metacritic);
+        table.add(new JLabel("Genres: ", SwingConstants.RIGHT));
+        table.add(genres);
+        table.add(new JLabel("Tags: ", SwingConstants.RIGHT));
+        table.add(tags);
+        table.add(new JLabel("Platforms: ", SwingConstants.RIGHT));
+        table.add(platforms);
+        table.add(new JLabel("Stores: ", SwingConstants.RIGHT));
+        table.add(stores);
 
-        add(ratingPanel);
-        add(genreTagPanel);
-        add(platformStoresPanel);
-
-
-
+        tablePanel.add(table);
+        add(table);
 
     }
 
-    public void updateGame(Game game) {
-        title.setText("Titel: " + game.getName());
-        release.setText("Release: " + game.getRelease().toString());
-
-        BufferedImage pic = null;
-        pic = game.loadImage();
-        titleImage.setIcon(new ImageIcon(pic.getScaledInstance(pic.getWidth() / 8,pic.getHeight() / 8, Image.SCALE_SMOOTH)));
-
+    public void updateGame(String [] gameInfo, ImageIcon image) {
+        title.setText(gameInfo[0]);
+        release.setText(gameInfo[1]);
+        titleImage.setIcon(image);
         description.setContentType("text/html");
-        description.setText(game.getDescription());
-
-        Double ratingD = game.getRating();
-        rating.setText(ratingD.toString());
-        metacritic.setText(((Integer)game.getMetacritic()).toString());
-
-        String genresString = "";
-        for (int i : game.getGenres()){
-            contr
-        }
-        genres.setText("Gewaltspiel");
-        tags.setText("Gewalt, Sex, Spaß");
-
-        platforms.setText("Plattformen: Alles");
-        stores.setText("Stores: RS, Steam, Epic Games");
-
-
-
-
-
+        description.setText(gameInfo[2]);
+        rating.setText(gameInfo[3]);
+        metacritic.setText(gameInfo[4]);
+        genres.setText(gameInfo[5]);
+        tags.setText(gameInfo[6]);
+        platforms.setText(gameInfo[7]);
+        stores.setText(gameInfo[8]);
     }
 }
