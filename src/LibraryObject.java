@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.Serializable;
@@ -61,7 +62,7 @@ public abstract class LibraryObject implements Serializable {
     }
 
 
-    public Image loadImage() {
+    public BufferedImage loadImage() {
         if(backgroundImage == null || backgroundImage.equals("")) {
             return null;
         }

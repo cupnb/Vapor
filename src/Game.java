@@ -85,6 +85,7 @@ public class Game extends LibraryObject{
         return o.getId() == id;
     }
 
+    public LocalDate getRelease() {return release;}
 
     public int[] getPlatforms() {
         return platforms;
