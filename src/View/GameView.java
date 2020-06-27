@@ -1,6 +1,5 @@
 package View;
 
-import Model.Game;
 import Controller.Controller;
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +38,8 @@ public class GameView extends JPanel {
         description  = new JTextPane();
 
         tablePanel = new JPanel();
-        table = new JPanel(new GridLayout(0, 2));
+        table = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
         rating = new JLabel();
         metacritic = new JLabel();
@@ -53,20 +53,48 @@ public class GameView extends JPanel {
         add(release);
         add(description);
 
-        table.add(new JLabel("Ratings: ", SwingConstants.RIGHT));
-        table.add(rating);
-        table.add(new JLabel("Metacritic: ", SwingConstants.RIGHT));
-        table.add(metacritic);
-        table.add(new JLabel("Genres: ", SwingConstants.RIGHT));
-        table.add(genres);
-        table.add(new JLabel("Tags: ", SwingConstants.RIGHT));
-        table.add(tags);
-        table.add(new JLabel("Platforms: ", SwingConstants.RIGHT));
-        table.add(platforms);
-        table.add(new JLabel("Stores: ", SwingConstants.RIGHT));
-        table.add(stores);
+        c.gridx = 0;
+        c.gridy = 0;
+        table.add(new JLabel("Ratings: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 0;
+        table.add(rating, c);
 
-        tablePanel.add(table);
+        c.gridx = 0;
+        c.gridy = 1;
+        table.add(new JLabel("Metacritic: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 1;
+        table.add(metacritic, c);
+
+        c.gridx = 0;
+        c.gridy = 2;
+        table.add(new JLabel("Genres: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 2;
+        table.add(genres, c);
+
+        c.gridx = 0;
+        c.gridy = 3;
+        table.add(new JLabel("Tags: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 3;
+        table.add(tags, c);
+
+        c.gridx = 0;
+        c.gridy = 4;
+        table.add(new JLabel("Platforms: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 4;
+        table.add(platforms, c);
+
+        c.gridx = 0;
+        c.gridy = 5;
+        table.add(new JLabel("Stores: ", SwingConstants.RIGHT), c);
+        c.gridx = 1;
+        c.gridy = 5;
+        table.add(stores, c);
+
         add(table);
 
     }

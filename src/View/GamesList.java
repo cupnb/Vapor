@@ -40,4 +40,7 @@ public class GamesList extends JSplitPane {
 
     }
 
+    public String getSelectionName(int index){
+        return list.getSelectedValue();
+    }
 }

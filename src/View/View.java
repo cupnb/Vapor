@@ -33,6 +33,10 @@ public class View extends JFrame {
 
     }
 
+    public String getListString(int index){
+        return gamesList.getSelectionName(index);
+    }
+
     public void updateList(String[] games){
         gamesList.updateGames(games);
     }

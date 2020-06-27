@@ -1,3 +1,5 @@
+//TODO getGame(String name)
+
 package Model;
 
 import java.util.ArrayList;
@@ -166,6 +168,15 @@ public class Library {
             }
         }
         throw new IndexOutOfBoundsException("Did not find Game Object of id " + id);
+    }
+
+    public Game getGame(String name) {
+        for (Game game : games) {
+            if (game.getName().equals(name)) {
+                return game;
+            }
+        }
+        throw new IndexOutOfBoundsException("Did not find Game Object of name " + name);
     }
 
     public Store getStore(int id) {
