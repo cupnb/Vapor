@@ -1,5 +1,3 @@
-//TODO getGame(String name)
-
 package Model;
 
 import java.util.ArrayList;
