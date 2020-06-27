@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Game;
+import Model.Genre;
+import Model.Library;
 import View.View;
 
 import javax.swing.event.ListSelectionEvent;
@@ -22,6 +24,10 @@ public class Controller implements ActionListener, ListSelectionListener {
 
 
 
+    }
+
+    public Genre getGenre(int id){
+        return null;
     }
 
 

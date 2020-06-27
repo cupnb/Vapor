@@ -83,9 +83,14 @@ public class GameView extends JPanel {
         description.setContentType("text/html");
         description.setText(game.getDescription());
 
-        rating.setText("Das ist ein super Spiel");
-        metacritic.setText("Metacritic: 99");
+        Double ratingD = game.getRating();
+        rating.setText(ratingD.toString());
+        metacritic.setText(((Integer)game.getMetacritic()).toString());
 
+        String genresString = "";
+        for (int i : game.getGenres()){
+            contr
+        }
         genres.setText("Gewaltspiel");
         tags.setText("Gewalt, Sex, Spaß");
 
