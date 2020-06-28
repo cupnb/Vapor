@@ -25,14 +25,14 @@ public class Controller implements ActionListener, ListSelectionListener {
         view = new View(this);
 
         Game game = new Game(53432);
-        game1 = new Game(3498);
-        game2 = new Game(4200);
+        //game1 = new Game(3498);
+        //game2 = new Game(4200);
         library.addGame(game);
-        library.addGame(game1);
-        library.addGame(game2);
+        //library.addGame(game1);
+        // library.addGame(game2);
 
 
-        view.updateList(new String[] {library.getGame(53432).getName(), library.getGame(3498).getName(), library.getGame(4200).getName()});
+        view.updateList(new String[] {library.getGame(53432).getName()/*, library.getGame(3498).getName(), library.getGame(4200).getName()*/});
 
 
         updateGame(game);
@@ -117,6 +117,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        System.out.println(e.getActionCommand());
     }
 
     @Override

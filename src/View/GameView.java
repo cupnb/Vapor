@@ -7,9 +7,6 @@ import java.awt.image.BufferedImage;
 
 public class GameView extends JPanel {
 
-    SpringLayout layout;
-    private BufferedImage image;
-
     private JPanel table;
     private JPanel tablePanel;
     private JLabel titleImage;
