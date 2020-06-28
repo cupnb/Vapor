@@ -10,15 +10,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.nio.file.FileSystemException;
 
 public class Controller implements ActionListener, ListSelectionListener {
 
     private View view;
-    private Library library;
+    public Library library;
+
+    private SubController activeController;
 
     Game game1;
     Game game2;
-    public Controller(){
+
+    public Controller() throws FileSystemException {
 
         library = new Library();
 
@@ -36,82 +40,35 @@ public class Controller implements ActionListener, ListSelectionListener {
 
 
         updateGame(game);
-
-
-
     }
 
-    public void updateGame(Game game){
-        String[] gameInfo = new String[9];
 
-
-
-        gameInfo[0] = "Titel: " + game.getName();
-        gameInfo[1] = "Release: " + game.getRelease().toString();
-
-        BufferedImage pic = game.loadImage();
-        Dimension d = getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 400));
-        ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH));
-
-        gameInfo[2] = game.getDescription();
-
-        gameInfo[3] = ((Double)game.getRating()).toString();
-        gameInfo[4] = ((Integer)game.getMetacritic()).toString();
-
-        String genresString = "";
-        for (int i : game.getGenres()){
-            genresString = genresString.concat(getGenre(i).getName() + ", ");
-        }
-
-        String tagString = "";
-        for (int i : game.getTags()){
-            tagString = tagString.concat(getTag(i).getName() + ", ");
-        }
-
-        String platformString = "";
-        for (int i : game.getPlatforms()){
-            platformString = platformString.concat(getPlatform(i).getName() + ", ");
-        }
-
-        String storeString = "";
-        for (int i : game.getStores()){
-            storeString = storeString.concat(getStore(i).getName() + ", ");
-        }
-        gameInfo[5] = genresString;
-        gameInfo[6] = tagString;
-        gameInfo[7] = platformString;
-        gameInfo[8] = storeString;
-
-
-        view.updateGame(gameInfo, image);
+    public void updateGame(Game game) {
+        activeController = new GameController(game, this, library, view);
     }
 
-    public Genre getGenre(int id){
-        return library.getGenre(id);
-
+    public void updateStore(Store store) {
+        activeController = new StoreController(store, this, library, view);
     }
 
-    public Tag getTag(int id){
-        return library.getTag(id);
+    public void updateTag(Tag tag) {
+        activeController = new TagController(tag, this, library, view);
     }
 
-    public Platform getPlatform(int id){
-        return library.getPlatform(id);
+    public void updateGenre(Genre genre) {
+        activeController = new GenreController(genre, this, library, view);
     }
 
-    public Store getStore(int id){
-        return library.getStore(id);
+    public void updatePlatform(Platform platform) {
+        activeController = new PlatformController(platform, this, library, view);
     }
 
-    private Dimension getScaledDimension(Dimension imageSize, Dimension boundary) {
-
-        double widthRatio = boundary.getWidth() / imageSize.getWidth();
-        double heightRatio = boundary.getHeight() / imageSize.getHeight();
-        double ratio = Math.min(widthRatio, heightRatio);
-
-        return new Dimension((int) (imageSize.width  * ratio),
-                (int) (imageSize.height * ratio));
+    public void updateSearch(String query) {
+        activeController = new SearchController(query, this, library, view);
     }
+
+
+
 
 
     @Override

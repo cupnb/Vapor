@@ -1,6 +1,9 @@
 package Model;
 
+import java.io.File;
+import java.nio.file.FileSystemException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Library {
     ArrayList<Game> games;
@@ -10,12 +13,28 @@ public class Library {
     ArrayList<Tag> tags;
 
 
-    public Library() {
+    public Library() throws FileSystemException {
         games = new ArrayList<>();
         stores = new ArrayList<>();
         platforms = new ArrayList<>();
         genres = new ArrayList<>();
         tags = new ArrayList<>();
+        initFolders();
+    }
+
+
+    public void initFolders() throws FileSystemException {
+        String[] paths = {"resources/", "resources/temp/", "resources/image/", "resources/image/game/",
+                "resources/image/genre/", "resources/image/platform/", "resources/image/store/", "resources/image/tag/"};
+
+        for (String path : paths) {
+            File file = new File(path);
+            if (!file.exists()) {
+                if (!file.mkdir()) {
+                    throw new FileSystemException("Folders could not be created");
+                }
+            }
+        }
     }
 
 
@@ -165,7 +184,7 @@ public class Library {
                 return game;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Game Object of id " + id);
+        return new Game(id);
     }
 
     public Game getGame(String name) {
@@ -183,7 +202,7 @@ public class Library {
                 return store;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Store Object of id " + id);
+        return new Store(id);
     }
 
     public Platform getPlatform(int id) {
@@ -192,7 +211,7 @@ public class Library {
                 return platform;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Platform Object of id " + id);
+        return new Platform(id);
     }
 
     public Tag getTag(int id) {
@@ -201,7 +220,7 @@ public class Library {
                 return tag;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Tag Object of id " + id);
+        return new Tag(id);
     }
 
     public Genre getGenre(int id) {
@@ -210,6 +229,58 @@ public class Library {
                 return genre;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Genre Object of id " + id);
+        return new Genre(id);
+    }
+
+    public Game[] getGamesFrom(Store store) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int storeInt : game.getStores()) {
+                if (storeInt == store.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Tag tag) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int tagInt : game.getTags()) {
+                if (tagInt == tag.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Genre genre) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int genreInt : game.getGenres()) {
+                if (genreInt == genre.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Platform platform) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int platformInt : game.getPlatforms()) {
+                if (platformInt == platform.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
     }
 }

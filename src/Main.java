@@ -1,5 +1,6 @@
 import Controller.Controller;
-import Model.suggestionRequest;
+import Model.Game;
+import Model.Store;
 
 public class Main {
 
@@ -10,8 +11,7 @@ public class Main {
     private static void test() {
         System.out.println(System.nanoTime());
         try {
-            suggestionRequest sr = new suggestionRequest("Rainbow");
-            sr.start();
+            Controller controller = new Controller();
         }
         catch (Exception e) {
             System.out.println("ERROR");
