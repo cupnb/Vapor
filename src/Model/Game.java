@@ -112,4 +112,5 @@ public class Game extends LibraryObject{
     public int getMetacritic() {
         return metacritic;
     }
+
 }
