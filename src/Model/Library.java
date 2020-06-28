@@ -184,7 +184,7 @@ public class Library {
                 return game;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Game Object of id " + id);
+        return new Game(id);
     }
 
     public Game getGame(String name) {
@@ -202,7 +202,7 @@ public class Library {
                 return store;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Store Object of id " + id);
+        return new Store(id);
     }
 
     public Platform getPlatform(int id) {
@@ -211,7 +211,7 @@ public class Library {
                 return platform;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Platform Object of id " + id);
+        return new Platform(id);
     }
 
     public Tag getTag(int id) {
@@ -220,7 +220,7 @@ public class Library {
                 return tag;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Tag Object of id " + id);
+        return new Tag(id);
     }
 
     public Genre getGenre(int id) {
