@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.nio.file.FileSystemException;
 
 public class Controller implements ActionListener, ListSelectionListener {
 
@@ -20,7 +21,8 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     Game game1;
     Game game2;
-    public Controller(){
+
+    public Controller() throws FileSystemException {
 
         library = new Library();
 
