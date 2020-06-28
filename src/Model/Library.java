@@ -229,6 +229,58 @@ public class Library {
                 return genre;
             }
         }
-        throw new IndexOutOfBoundsException("Did not find Genre Object of id " + id);
+        return new Genre(id);
+    }
+
+    public Game[] getGamesFrom(Store store) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int storeInt : game.getStores()) {
+                if (storeInt == store.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Tag tag) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int tagInt : game.getTags()) {
+                if (tagInt == tag.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Genre genre) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int genreInt : game.getGenres()) {
+                if (genreInt == genre.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
+    }
+
+    public Game[] getGamesFrom(Platform platform) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (Game game : games) {
+            for (int platformInt : game.getPlatforms()) {
+                if (platformInt == platform.getId()) {
+                    result.add(game);
+                    break;
+                }
+            }
+        }
+        return (Game[]) result.toArray();
     }
 }
