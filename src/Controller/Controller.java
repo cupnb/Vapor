@@ -27,9 +27,10 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     public Controller() throws FileSystemException {
 
-        library = new Library();
-
         view = new View(this);
+
+        library = loadLibrary();
+
 
         Game game = new Game(53432);
         game1 = new Game(3498);
@@ -72,6 +73,35 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     public void updateSearch(String query) {
         activeController = new SearchController(query, this, library, view);
+    }
+
+    public void saveLibrary() {
+        try {
+            FileOutputStream file = new FileOutputStream(libraryPath);
+            ObjectOutputStream objOut = new ObjectOutputStream(file);
+            objOut.writeObject(library);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Library loadLibrary() throws FileSystemException {
+        try {
+            if (!new File(libraryPath).exists()) {
+                return new Library();
+            }
+            FileInputStream file = new FileInputStream(libraryPath);
+            ObjectInputStream objIn = new ObjectInputStream(file);
+            Library library = (Library) objIn.readObject();
+            library.initFolders();
+            view.updateList(library.getAllGameNames());
+            return library;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return new Library();
+        }
     }
 
 
