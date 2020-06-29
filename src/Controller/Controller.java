@@ -10,9 +10,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.*;
 import java.nio.file.FileSystemException;
+import java.util.ArrayList;
 
 public class Controller implements ActionListener, ListSelectionListener {
+    final static private String libraryPath = "resources/library";
 
     private View view;
     public Library library;
@@ -31,15 +34,19 @@ public class Controller implements ActionListener, ListSelectionListener {
         Game game = new Game(53432);
         game1 = new Game(3498);
         game2 = new Game(4200);
-        library.addGame(game);
-        library.addGame(game1);
-        library.addGame(game2);
-
-
-        view.updateList(new String[] {library.getGame(53432).getName(), library.getGame(3498).getName(), library.getGame(4200).getName()});
-
+        addGame(game);
+        addGame(game1);
+        addGame(game2);
 
         updateGame(game);
+    }
+
+
+    public void addGame(Game game) {
+        if (library.addGame(game)) {
+            view.updateList(library.getAllGameNames());
+            saveLibrary();
+        }
     }
 
 
@@ -78,6 +85,12 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        updateGame(library.getGame(view.getListString(e.getFirstIndex())));
+        try {
+            updateGame(library.getGame(view.getListString(e.getFirstIndex())));
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
     }
 }
