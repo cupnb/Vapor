@@ -8,8 +8,7 @@ public class Store extends LibraryObject{
         try {
             this.id = id;
             classString = "store";
-            Rawg rawg = new Rawg();
-            Json result = new Json(rawg.storeRequest(id));
+            Json result = new Json(Rawg.storeRequest(id));
             gamesCount = (int) result.getContent("games_count");
             domain = (String) result.getContent("domain");
             name = (String) result.getContent("name");

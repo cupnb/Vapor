@@ -1,11 +1,11 @@
 package Model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.file.FileSystemException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Library {
+public class Library implements Serializable {
     ArrayList<Game> games;
     ArrayList<Store> stores;
     ArrayList<Platform> platforms;
@@ -19,26 +19,10 @@ public class Library {
         platforms = new ArrayList<>();
         genres = new ArrayList<>();
         tags = new ArrayList<>();
-        initFolders();
     }
 
 
-    public void initFolders() throws FileSystemException {
-        String[] paths = {"resources/", "resources/temp/", "resources/image/", "resources/image/game/",
-                "resources/image/genre/", "resources/image/platform/", "resources/image/store/", "resources/image/tag/"};
-
-        for (String path : paths) {
-            File file = new File(path);
-            if (!file.exists()) {
-                if (!file.mkdir()) {
-                    throw new FileSystemException("Folders could not be created");
-                }
-            }
-        }
-    }
-
-
-    public void addGame(Game game) {
+    public boolean addGame(Game game) {
         if (!gameExists(game)) {
             games.add(game);
             game.storeImage();
@@ -58,7 +42,9 @@ public class Library {
             for (int id : game.getTags()) {
                 addTag(id);
             }
+            return true;
         }
+        return false;
     }
 
     public void addStore(Store store) {
@@ -194,6 +180,18 @@ public class Library {
             }
         }
         throw new IndexOutOfBoundsException("Did not find Game Object of name " + name);
+    }
+
+    public Game[] getAllGames() {
+        return (Game[]) games.toArray();
+    }
+
+    public String[] getAllGameNames() {
+        String[] names = new String[games.size()];
+        for (int i = 0; i < games.size(); i++) {
+            names[i] = games.get(i).getName();
+        }
+        return names;
     }
 
     public Store getStore(int id) {

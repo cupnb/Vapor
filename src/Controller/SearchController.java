@@ -22,7 +22,7 @@ public class SearchController extends SubController {
 
     public Game[] searchRequest(String query) {
         try {
-            Json result = new Json(new Rawg().searchRequest(5, query));
+            Json result = new Json(Rawg.searchRequest(5, query));
             Json[] json_games = (Json[]) result.getContent("results");
             Game[] games = new Game[json_games.length];
             for(int i = 0; i < json_games.length; i++) {
