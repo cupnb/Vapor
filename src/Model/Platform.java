@@ -6,8 +6,7 @@ public class Platform extends LibraryObject{
         try {
             this.id = id;
             classString = "platform";
-            Rawg rawg = new Rawg();
-            Json result = new Json(rawg.platformRequest(id));
+            Json result = new Json(Rawg.platformRequest(id));
             name = (String) result.getContent("name");
             description = (String) result.getContent("description");
             backgroundImage = (String) result.getContent("image_background");
