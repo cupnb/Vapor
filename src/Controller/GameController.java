@@ -53,7 +53,7 @@ public class GameController extends SubController {
         gameInfo[1] = "Release: " + game.getRelease().toString();
 
         BufferedImage pic = game.loadImage();
-        Dimension d = getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 400));
+        Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 400));
         ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH));
 
         gameInfo[2] = game.getDescription();
@@ -63,22 +63,22 @@ public class GameController extends SubController {
 
         String genresString = "";
         for (Genre genre : genres){
-            genresString = genresString.concat(genre.getName() + ", ");
+            genresString = genresString.concat(genre.getName() + ",");
         }
 
         String tagString = "";
         for (Tag tag : tags){
-            tagString = tagString.concat(tag.getName() + ", ");
+            tagString = tagString.concat(tag.getName() + ",");
         }
 
         String platformString = "";
         for (Platform platform : platforms){
-            platformString = platformString.concat(platform.getName() + ", ");
+            platformString = platformString.concat(platform.getName() + ",");
         }
 
         String storeString = "";
         for (Store store : stores){
-            storeString = storeString.concat(store.getName() + ", ");
+            storeString = storeString.concat(store.getName() + ",");
         }
         gameInfo[5] = genresString;
         gameInfo[6] = tagString;
@@ -86,19 +86,8 @@ public class GameController extends SubController {
         gameInfo[8] = storeString;
 
 
-        this.view.updateGame(gameInfo, image);
+        this.view.updateGame(gameInfo, image, this);
     }
-
-    private Dimension getScaledDimension(Dimension imageSize, Dimension boundary) {
-
-        double widthRatio = boundary.getWidth() / imageSize.getWidth();
-        double heightRatio = boundary.getHeight() / imageSize.getHeight();
-        double ratio = Math.min(widthRatio, heightRatio);
-
-        return new Dimension((int) (imageSize.width  * ratio),
-                (int) (imageSize.height * ratio));
-    }
-
 
     public void actionPerformed(ActionEvent event) {
         try {

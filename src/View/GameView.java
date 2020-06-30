@@ -1,14 +1,14 @@
 package View;
 
-import Controller.Controller;
+import Controller.SubController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GameView extends JPanel {
 
-    private JPanel table;
-    private JPanel tablePanel;
+    private JPanel titlePanel;
+    private JPanel titleTextPanel;
     private JLabel titleImage;
     private JLabel title;
     private JLabel release;
@@ -16,38 +16,44 @@ public class GameView extends JPanel {
     private JLabel rating;
     private JLabel metacritic;
 
+    private JPanel table;
+    private JScrollPane tablePanel;
+    private JPanel platforms;
+    private JPanel genres;
+    private JPanel tags;
+    private JPanel stores;
 
-    private JLabel platforms;
-    private JLabel genres;
-    private JLabel tags;
-    private JLabel stores;
 
 
-
-    public GameView(Controller controller){
+    public GameView(){
         setPreferredSize(new Dimension(900, 600));
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        titlePanel = new JPanel(new GridBagLayout());
+        titleTextPanel = new JPanel();
+        titleTextPanel.setLayout(new BoxLayout(titleTextPanel, BoxLayout.PAGE_AXIS));
 
         titleImage = new JLabel();
         title = new JLabel();
         release = new JLabel();
         description  = new JTextPane();
 
-        tablePanel = new JPanel();
+        tablePanel = new JScrollPane();
         table = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        rating = new JLabel();
-        metacritic = new JLabel();
-        genres = new JLabel();
-        tags = new JLabel();
-        platforms = new JLabel();
-        stores = new JLabel();
+        rating = new JLabel("", SwingConstants.LEFT);
+        metacritic = new JLabel("", SwingConstants.LEFT);
+        genres = new JPanel(new GridLayout(0, 5));
+        tags = new JPanel(new GridLayout(0, 5));
+        platforms = new JPanel(new GridLayout(0, 5));
+        stores = new JPanel(new GridLayout(0, 5));
 
-        add(titleImage);
-        add(title);
-        add(release);
+        titlePanel.add(titleImage);
+        titleTextPanel.add(title);
+        titleTextPanel.add(release);
+        titlePanel.add(titleTextPanel);
+        add(titlePanel);
         add(description);
 
         c.gridx = 0;
@@ -93,10 +99,11 @@ public class GameView extends JPanel {
         table.add(stores, c);
 
         add(table);
+        //add(tablePanel);
 
     }
 
-    public void updateGame(String [] gameInfo, ImageIcon image) {
+    public void updateGame(String [] gameInfo, ImageIcon image, SubController c) {
         title.setText(gameInfo[0]);
         release.setText(gameInfo[1]);
         titleImage.setIcon(image);
@@ -104,9 +111,55 @@ public class GameView extends JPanel {
         description.setText(gameInfo[2]);
         rating.setText(gameInfo[3]);
         metacritic.setText(gameInfo[4]);
-        genres.setText(gameInfo[5]);
-        tags.setText(gameInfo[6]);
-        platforms.setText(gameInfo[7]);
-        stores.setText(gameInfo[8]);
+
+        genres.removeAll();
+        tags.removeAll();
+        platforms.removeAll();
+        stores.removeAll();
+
+        JButton j;
+        int index = 0;
+        for (String s : gameInfo[5].split(",")){
+            if (s.isEmpty()){
+                break;
+            }
+            j = new JButton(s);
+            j.setActionCommand("Genre:" + index);
+            j.addActionListener(c);
+            genres.add(j);
+        }
+
+        index = 0;
+        for (String s : gameInfo[6].split(",")){
+            if (s.isEmpty()){
+                break;
+            }
+            j = new JButton(s);
+            j.setActionCommand("Genre:" + index);
+            j.addActionListener(c);
+            tags.add(j);
+        }
+
+        index = 0;
+        for (String s : gameInfo[7].split(",")){
+            if (s.isEmpty()){
+                break;
+            }
+            j = new JButton(s);
+            j.setActionCommand("Genre:" + index);
+            j.addActionListener(c);
+            platforms.add(j);
+        }
+
+        index = 0;
+        for (String s : gameInfo[8].split(",")){
+            if (s.isEmpty()){
+                break;
+            }
+            j = new JButton(s);
+            j.setActionCommand("Store:" + index);
+            j.addActionListener(c);
+            stores.add(j);
+        }
     }
 }
