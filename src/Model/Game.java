@@ -22,14 +22,13 @@ public class Game extends LibraryObject{
         try {
             this.id = id;
             classString = "game";
-            Rawg rawg = new Rawg();
-            String stringRes = rawg.gameRequest(id);
+            String stringRes = Rawg.gameRequest(id);
             Json json = new Json(stringRes);
 
             Object[] curArray;
 
 
-            isImageLocal = false;
+            isImagePerm = false;
             name = (String) json.getContent("name");
             description = (String) json.getContent("description");
             try {
