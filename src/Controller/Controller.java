@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class Controller implements ActionListener, ListSelectionListener {
     final static private String libraryPath = "resources/library";
 
-    private View view;
-    public Library library;
+    private final View view;
+    public final Library library;
 
     private SubController activeController;
 
@@ -29,7 +29,11 @@ public class Controller implements ActionListener, ListSelectionListener {
 
         view = new View(this);
 
-        library = loadLibrary();
+        DataIO.initFolders();
+
+        library = DataIO.loadLibrary();
+
+        view.updateList(library.getAllGameNames());
 
 
         Game game = new Game(53432);
@@ -45,8 +49,13 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     public void addGame(Game game) {
         if (library.addGame(game)) {
-            view.updateList(library.getAllGameNames());
-            saveLibrary();
+            try {
+                view.updateList(library.getAllGameNames());
+                DataIO.saveLibrary(library);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -86,30 +95,14 @@ public class Controller implements ActionListener, ListSelectionListener {
         }
     }
 
-    public Library loadLibrary() throws FileSystemException {
-        try {
-            if (!new File(libraryPath).exists()) {
-                return new Library();
-            }
-            FileInputStream file = new FileInputStream(libraryPath);
-            ObjectInputStream objIn = new ObjectInputStream(file);
-            Library library = (Library) objIn.readObject();
-            library.initFolders();
-            view.updateList(library.getAllGameNames());
-            return library;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return new Library();
-        }
-    }
-
-
-
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "search":
+                //String query = view.
+        }
 
     }
 
