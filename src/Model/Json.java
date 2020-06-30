@@ -8,7 +8,7 @@ public class Json {
     public Map<String, Object> content;
     public Json(String str) {
        content = new HashMap<>();
-       getElements(str.substring(1, getSubJson(str, 0)));
+       getElements(str.substring(1, getSubJson(str, 0)).replace("\\n", ""));
     }
 
 
