@@ -19,22 +19,6 @@ public class Library implements Serializable {
         platforms = new ArrayList<>();
         genres = new ArrayList<>();
         tags = new ArrayList<>();
-        initFolders();
-    }
-
-
-    public void initFolders() throws FileSystemException {
-        String[] paths = {"resources/", "resources/temp/", "resources/image/", "resources/image/game/",
-                "resources/image/genre/", "resources/image/platform/", "resources/image/store/", "resources/image/tag/"};
-
-        for (String path : paths) {
-            File file = new File(path);
-            if (!file.exists()) {
-                if (!file.mkdir()) {
-                    throw new FileSystemException("Folders could not be created");
-                }
-            }
-        }
     }
 
 
