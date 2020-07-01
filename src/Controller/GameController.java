@@ -49,7 +49,7 @@ public class GameController extends SubController {
 
 
 
-        gameInfo[0] = "Title: " + game.getName();
+        gameInfo[0] = game.getName();
         gameInfo[1] = "Release: " + game.getRelease().toString();
 
         BufferedImage pic = game.loadImage();

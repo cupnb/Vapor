@@ -16,6 +16,8 @@ public class PlatformController extends SubController {
         this.library = library;
         this.view = view;
         games = this.library.getGamesFrom(platform);
+
+        view.updateGrid(games, this);
     }
 
     public void actionPerformed(ActionEvent event) {

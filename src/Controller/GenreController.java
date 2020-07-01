@@ -16,6 +16,8 @@ public class GenreController extends SubController {
         this.library = library;
         this.view = view;
         games = this.library.getGamesFrom(genre);
+
+        view.updateGrid(games, this);
     }
 
     public void actionPerformed(ActionEvent event) {

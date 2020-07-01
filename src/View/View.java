@@ -13,6 +13,9 @@ public class View extends JFrame {
     private Controller controller;
 
     private JSplitPane panel;
+
+    private CardLayout cl;
+    private JPanel cardLayout;
     private GamesList gamesList;
     private GameView gameView;
     private GridView gridView;
@@ -34,13 +37,22 @@ public class View extends JFrame {
             setSize(1600, 900);
             setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
+
             this.controller = controller;
+
+            cl = new CardLayout();
+            cardLayout = new JPanel(cl);
             gamesList = new GamesList(controller);
             gameView = new GameView();
             gridView = new GridView();
 
+            cardLayout.add(gameView, "gameView");
+            cardLayout.add(gridView, "gridView");
 
-            panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gamesList, gameView);
+            cl.show(cardLayout, "GameView");
+
+
+            panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gamesList, cardLayout);
             panel.setEnabled(false);
             add(panel);
             setVisible(true);
@@ -57,10 +69,12 @@ public class View extends JFrame {
 
     public void updateGame(String[] gameInfo, ImageIcon image, SubController c){
         gameView.updateGame(gameInfo, image, c);
+        cl.show(cardLayout, "gameView");
     }
 
     public void updateGrid(Game[] games, SubController c){
-
+        gridView.updateGrid(games, c);
+        cl.show(cardLayout, "gridView");
     }
 
     public static Dimension getScaledDimension(Dimension imageSize, Dimension boundary) {

@@ -16,6 +16,8 @@ public class StoreController extends SubController {
         this.library = library;
         this.view = view;
         games = this.library.getGamesFrom(store);
+
+        view.updateGrid(games, this);
     }
 
     public void actionPerformed(ActionEvent event) {

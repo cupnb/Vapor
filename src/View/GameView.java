@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 public class GameView extends JPanel {
 
     private JPanel titlePanel;
-    private JPanel titleTextPanel;
     private JLabel titleImage;
     private JLabel title;
     private JLabel release;
@@ -26,21 +25,26 @@ public class GameView extends JPanel {
 
 
     public GameView(){
-        setPreferredSize(new Dimension(900, 600));
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setPreferredSize(new Dimension(900, 600));
+        setLayout(new GridBagLayout());
 
-        titlePanel = new JPanel(new GridBagLayout());
-        titleTextPanel = new JPanel();
-        titleTextPanel.setLayout(new BoxLayout(titleTextPanel, BoxLayout.PAGE_AXIS));
 
         titleImage = new JLabel();
-        title = new JLabel();
-        release = new JLabel();
-        description  = new JTextPane();
+        titleImage.setPreferredSize(new Dimension(500, 300));
 
+
+        titlePanel = new JPanel(new GridLayout(0, 1));
+
+        title = new JLabel("", SwingConstants.LEFT);
+        title.setFont(new Font("SegoeUI", Font.PLAIN, 20));
+        release = new JLabel("", SwingConstants.LEFT);
+
+        titlePanel.add(title);
+        titlePanel.add(release);
+
+        description  = new JTextPane();
         tablePanel = new JScrollPane();
         table = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
 
         rating = new JLabel("", SwingConstants.LEFT);
         metacritic = new JLabel("", SwingConstants.LEFT);
@@ -49,13 +53,8 @@ public class GameView extends JPanel {
         platforms = new JPanel(new GridLayout(0, 5));
         stores = new JPanel(new GridLayout(0, 5));
 
-        titlePanel.add(titleImage);
-        titleTextPanel.add(title);
-        titleTextPanel.add(release);
-        titlePanel.add(titleTextPanel);
-        add(titlePanel);
-        add(description);
 
+        GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
         table.add(new JLabel("Ratings: ", SwingConstants.RIGHT), c);
@@ -98,8 +97,45 @@ public class GameView extends JPanel {
         c.gridy = 5;
         table.add(stores, c);
 
-        add(table);
-        //add(tablePanel);
+
+        /*GridBagConstraints titleConstraints = new GridBagConstraints();
+        titleConstraints.fill = GridBagConstraints.NONE ;
+        add(titleImage, titleConstraints);*/
+
+        GridBagConstraints titleConstraints = new GridBagConstraints();
+        titleConstraints.gridx = 0;
+        titleConstraints.gridy = 0;
+        titleConstraints.weighty = 1.0;
+        titleConstraints.weightx = 1.0;
+
+        titleConstraints.anchor = GridBagConstraints.NORTHWEST;
+        add(titleImage, titleConstraints);
+
+        titleConstraints.gridx = 1;
+        titleConstraints.gridy = 0;
+        titleConstraints.weighty = 1.0;
+        titleConstraints.weightx = 1.0;
+        titleConstraints.gridwidth = 1;
+        titleConstraints.anchor = GridBagConstraints.NORTH;
+        titleConstraints.fill = GridBagConstraints.HORIZONTAL;
+        add(titlePanel, titleConstraints);
+
+        titleConstraints.gridx = 0;
+        titleConstraints.gridy = 1;
+        titleConstraints.gridwidth = 3;
+        titleConstraints.anchor = GridBagConstraints.NORTH;
+        titleConstraints.fill = GridBagConstraints.BOTH;
+        add(description, titleConstraints);
+
+        titleConstraints.gridx = 0;
+        titleConstraints.gridy = 2;
+        titleConstraints.gridwidth = 3;
+        titleConstraints.anchor = GridBagConstraints.NORTH;
+        titleConstraints.fill = GridBagConstraints.BOTH;
+        add(table, titleConstraints);
+
+
+
 
     }
 
@@ -127,6 +163,7 @@ public class GameView extends JPanel {
             j.setActionCommand("Genre:" + index);
             j.addActionListener(c);
             genres.add(j);
+            index++;
         }
 
         index = 0;
@@ -138,6 +175,7 @@ public class GameView extends JPanel {
             j.setActionCommand("Tag:" + index);
             j.addActionListener(c);
             tags.add(j);
+            index++;
         }
 
         index = 0;
@@ -149,6 +187,7 @@ public class GameView extends JPanel {
             j.setActionCommand("Platform:" + index);
             j.addActionListener(c);
             platforms.add(j);
+            index++;
         }
 
         index = 0;
@@ -160,6 +199,7 @@ public class GameView extends JPanel {
             j.setActionCommand("Store:" + index);
             j.addActionListener(c);
             stores.add(j);
+            index++;
         }
     }
 }

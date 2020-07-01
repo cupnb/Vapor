@@ -16,6 +16,8 @@ public class TagController extends SubController{
         this.library = library;
         this.view = view;
         games = this.library.getGamesFrom(tag);
+
+        view.updateGrid(games, this);
     }
 
     public void actionPerformed(ActionEvent event) {

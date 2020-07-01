@@ -17,14 +17,13 @@ public class GridView extends JPanel {
     public GridView(){
         scrollPane = new JScrollPane();
         grid = new JPanel();
-        grid.setLayout(new GridLayout());
+        grid.setLayout(new GridLayout(0, 5));
 
-        scrollPane.add(grid);
-        add(scrollPane);
+        add(grid);
     }
 
     public void updateGrid(Game[] games, SubController c){
-        removeAll();
+        grid.removeAll();
         int i = 0;
         JButton j;
         for (Game g : games){
