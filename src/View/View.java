@@ -6,7 +6,7 @@ import Model.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import com.formdev.flatlaf.*;
 
 public class View extends JFrame {
 
@@ -17,11 +17,20 @@ public class View extends JFrame {
     private GameView gameView;
     private GridView gridView;
 
+    final static private boolean useExternalFlatLaf = true;
+
 
 
     public View(Controller controller) {
             super("VAPOR");
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
+        try {
+            if (useExternalFlatLaf) {
+                UIManager.setLookAndFeel(new FlatDarculaLaf());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize(1600, 900);
             setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
