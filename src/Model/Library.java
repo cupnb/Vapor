@@ -240,7 +240,7 @@ public class Library implements Serializable {
                 }
             }
         }
-        return (Game[]) result.toArray();
+        return toArray(result);
     }
 
     public Game[] getGamesFrom(Tag tag) {
@@ -253,7 +253,7 @@ public class Library implements Serializable {
                 }
             }
         }
-        return (Game[]) result.toArray();
+        return toArray(result);
     }
 
     public Game[] getGamesFrom(Genre genre) {
@@ -266,7 +266,7 @@ public class Library implements Serializable {
                 }
             }
         }
-        return (Game[]) result.toArray();
+        return toArray(result);
     }
 
     public Game[] getGamesFrom(Platform platform) {
@@ -279,6 +279,14 @@ public class Library implements Serializable {
                 }
             }
         }
-        return (Game[]) result.toArray();
+        return toArray(result);
+    }
+
+    private Game[] toArray(ArrayList<Game> list) {
+        Game[] array = new Game[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
     }
 }
