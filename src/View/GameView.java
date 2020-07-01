@@ -135,7 +135,7 @@ public class GameView extends JPanel {
                 break;
             }
             j = new JButton(s);
-            j.setActionCommand("Genre:" + index);
+            j.setActionCommand("Tag:" + index);
             j.addActionListener(c);
             tags.add(j);
         }
@@ -146,7 +146,7 @@ public class GameView extends JPanel {
                 break;
             }
             j = new JButton(s);
-            j.setActionCommand("Genre:" + index);
+            j.setActionCommand("Platform:" + index);
             j.addActionListener(c);
             platforms.add(j);
         }
