@@ -17,6 +17,7 @@ public class View extends JFrame {
     private CardLayout cl;
     private JPanel cardLayout;
     private GamesList gamesList;
+    private JScrollPane gamesViewScroll;
     private GameView gameView;
     private GridView gridView;
 
@@ -35,7 +36,7 @@ public class View extends JFrame {
         }
         setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize(1600, 900);
-            setMinimumSize(new Dimension(1600, 900));
+            //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
 
             this.controller = controller;
@@ -46,7 +47,10 @@ public class View extends JFrame {
             gameView = new GameView();
             gridView = new GridView();
 
-            cardLayout.add(gameView, "gameView");
+            gamesViewScroll = new JScrollPane(gameView);
+            gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+            cardLayout.add(gamesViewScroll, "gameView");
             cardLayout.add(gridView, "gridView");
 
             cl.show(cardLayout, "GameView");

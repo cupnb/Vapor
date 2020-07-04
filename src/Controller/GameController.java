@@ -53,8 +53,8 @@ public class GameController extends SubController {
         gameInfo[1] = "Release: " + game.getRelease().toString();
 
         BufferedImage pic = game.loadImage();
-        Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 400));
-        ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH));
+        //Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 500));
+        ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_SMOOTH));
 
         gameInfo[2] = game.getDescription();
 

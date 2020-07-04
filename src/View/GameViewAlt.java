@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameView extends JPanel implements Scrollable{
+public class GameViewAlt extends JPanel implements Scrollable{
 
     private JPanel titleImagePanel;
     private JLabel titleImage;
@@ -26,7 +26,7 @@ public class GameView extends JPanel implements Scrollable{
 
 
 
-    public GameView() {
+    public GameViewAlt() {
         //setPreferredSize(new Dimension(900, 600));
         setLayout(new GridBagLayout());
 
