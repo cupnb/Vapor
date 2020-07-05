@@ -27,6 +27,7 @@ public class GamesList extends JSplitPane{
         list.addListSelectionListener(c);
 
         jScrollPane = new JScrollPane(list);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(jScrollPane);
 
         searchPane = new JPanel();
@@ -49,11 +50,15 @@ public class GamesList extends JSplitPane{
 
     public void updateGames(String[] games){
         list.setListData(games);
-        setDividerLocation(this.getSize().height - 20);
+        //setDividerLocation(this.getSize().height - 20);
 
     }
 
     public String getSelectionName(int index){
         return list.getSelectedValue();
+    }
+
+    public String getSearchString(){
+        return textField.getText();
     }
 }
