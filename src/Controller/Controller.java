@@ -75,7 +75,6 @@ public class Controller implements ActionListener, ListSelectionListener {
         switch (e.getActionCommand()) {
             case "Search":
                 rootController.addSearchCon(view.getSearchString());
-                updateSearch(view.getSearchString());
                 break;
 
             case "allGames":
@@ -83,11 +82,11 @@ public class Controller implements ActionListener, ListSelectionListener {
                 break;
 
             case "back":
-                System.out.println("back");
+                rootController.activatePrevious();
                 break;
 
             case "forward":
-                System.out.println("forward");
+                rootController.activateNext();
                 break;
 
         }
