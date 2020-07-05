@@ -25,6 +25,7 @@ public class Library implements Serializable {
     public boolean addGame(Game game) {
         if (!gameExists(game)) {
             games.add(game);
+            game.setIsLocal(true);
             game.storeImage();
 
             for (int id : game.getStores()) {
@@ -45,6 +46,57 @@ public class Library implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public void removeGame(Game game) {
+        if (gameExists(game)) {
+            games.remove(game);
+            game.setIsLocal(false);
+            game.deleteImage();
+            for (int id : game.getStores()) {
+                checkAndRemove(getStore(id));
+            }
+
+            for (int id : game.getPlatforms()) {
+                checkAndRemove(getPlatform(id));
+            }
+
+            for (int id : game.getGenres()) {
+                checkAndRemove(getGenre(id));
+            }
+
+            for (int id : game.getTags()) {
+                checkAndRemove(getTag(id));
+            }
+        }
+    }
+
+    private void checkAndRemove(Store store) {
+        if (getGamesFrom(store).length == 0) {
+            stores.remove(store);
+            store.deleteImage();
+        }
+    }
+
+    private void checkAndRemove(Genre genre) {
+        if (getGamesFrom(genre).length == 0) {
+            genres.remove(genre);
+            genre.deleteImage();
+        }
+    }
+
+    private void checkAndRemove(Tag tag) {
+        if (getGamesFrom(tag).length == 0) {
+            tags.remove(tag);
+            tag.deleteImage();
+        }
+    }
+
+    private void checkAndRemove(Platform platform) {
+        if (getGamesFrom(platform).length == 0) {
+            platforms.remove(platform);
+            platform.deleteImage();
+        }
     }
 
     public void addStore(Store store) {

@@ -154,5 +154,15 @@ public abstract class DataIO {
         }
     }
 
+    public static void deleteImage(int id, String classString) {
+        File source = new File(String.format("%s/image/%s/%d.jpg", resourcePath, classString, id));
+        try {
+            source.delete();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

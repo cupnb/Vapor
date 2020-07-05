@@ -36,6 +36,13 @@ public abstract class LibraryObject implements Serializable {
         }
     }
 
+
+    public void deleteImage() {
+        if (isImagePerm) {
+            DataIO.deleteImage(id, classString);
+        }
+    }
+
     public int getId() {
         return id;
     }
