@@ -3,16 +3,12 @@ package Controller;
 import Model.*;
 import View.View;
 
-import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.FileSystemException;
-import java.util.ArrayList;
 
 public class Controller implements ActionListener, ListSelectionListener {
     final static private String libraryPath = "resources/library";
@@ -73,11 +69,27 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Search":
                 rootController.addSearchCon(view.getSearchString());
+                updateSearch(view.getSearchString());
+                break;
+
+            case "allGames":
+                System.out.println("Show all games");
+                break;
+
+            case "back":
+                System.out.println("back");
+                break;
+
+            case "forward":
+                System.out.println("forward");
+                break;
+
         }
 
     }

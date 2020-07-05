@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 
 public class GamesList extends JSplitPane{
 
+    private JPanel listPanel;
+    private JPanel buttonPanel;
     private JList<String> list;
     private JScrollPane jScrollPane;
     private JPanel searchPane;
@@ -19,6 +21,29 @@ public class GamesList extends JSplitPane{
         setEnabled(false);
         setResizeWeight(1.0);
 
+        listPanel = new JPanel();
+        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
+
+        JButton back = new JButton("Zurück");
+        JButton forward = new JButton("Vorwärts");
+        JButton allGames = new JButton("Alle Spiele");
+
+        back.addActionListener(c);
+        forward.addActionListener(c);
+        allGames.addActionListener(c);
+
+        back.setActionCommand("back");
+        forward.setActionCommand("forward");
+        allGames.setActionCommand("allGames");
+        buttonPanel = new JPanel();
+
+        buttonPanel.add(back);
+        buttonPanel.add(forward);
+        buttonPanel.add(allGames);
+
+        listPanel.add(buttonPanel);
+
+
 
         list = new JList<>();
         list.setLayoutOrientation(JList.VERTICAL);
@@ -28,7 +53,11 @@ public class GamesList extends JSplitPane{
 
         jScrollPane = new JScrollPane(list);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        add(jScrollPane);
+
+        jScrollPane.setPreferredSize(new Dimension(300, 10000));
+        listPanel.add(jScrollPane);
+
+        add(listPanel);
 
         searchPane = new JPanel();
         textField = new HintTextField("Spielesuche");
