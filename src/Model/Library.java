@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.file.FileSystemException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Library implements Serializable {
     ArrayList<Game> games;
@@ -48,7 +49,7 @@ public class Library implements Serializable {
         return false;
     }
 
-    public void removeGame(Game game) {
+    public boolean removeGame(Game game) {
         if (gameExists(game)) {
             games.remove(game);
             game.setIsLocal(false);
@@ -68,7 +69,9 @@ public class Library implements Serializable {
             for (int id : game.getTags()) {
                 checkAndRemove(getTag(id));
             }
+            return true;
         }
+        return false;
     }
 
     private void checkAndRemove(Store store) {
@@ -243,6 +246,7 @@ public class Library implements Serializable {
         for (int i = 0; i < games.size(); i++) {
             names[i] = games.get(i).getName();
         }
+        Arrays.sort(names);
         return names;
     }
 

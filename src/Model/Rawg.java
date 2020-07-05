@@ -20,7 +20,14 @@ public abstract class Rawg {
      * @return Model.Json file with all results
      */
     public static String searchRequest(int amount, String query) throws IOException {
+        query = query.replace(' ', '+');
         URL url = new URL(String.format("%s/games?page_size=%d&search=%s", baseURL, amount, query));
+        return pushGetRequest(url);
+    }
+
+
+    public static String similarRequest(int id) throws IOException {
+        URL url = new URL(String.format("%s/games/%d/suggested", baseURL, id));
         return pushGetRequest(url);
     }
 
