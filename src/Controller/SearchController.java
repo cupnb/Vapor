@@ -16,13 +16,14 @@ public class SearchController extends SubController {
         this.controller = controller;
         this.library = library;
         this.view = view;
+        view.setLoad();
         games = searchRequest(query);
         view.updateGrid(games, this);
     }
 
     public Game[] searchRequest(String query) {
         try {
-            Json result = new Json(Rawg.searchRequest(10, query));
+            Json result = new Json(Rawg.searchRequest(100, query));
 
             Object[] objects = (Object[]) result.getContent("results");
             Json[] json_games = new Json[objects.length];

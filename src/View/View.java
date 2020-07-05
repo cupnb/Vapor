@@ -17,8 +17,8 @@ public class View extends JFrame {
     private GamesList gamesList;
     private JScrollPane gamesViewScroll;
     private GameView gameView;
+    private JScrollPane gridViewScroll;
     private GridView gridView;
-    private JPanel load;
 
     final static private boolean useExternalFlatLaf = true;
 
@@ -42,19 +42,19 @@ public class View extends JFrame {
             cardLayout = new JPanel(cl);
             gamesList = new GamesList(controller);
             gameView = new GameView();
-            gameView.setName("gameView");
             gridView = new GridView();
-            gridView.setName("gridView");
 
+            gridViewScroll = new JScrollPane(gridView);
+            gridViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             gamesViewScroll = new JScrollPane(gameView);
             gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
             JPanel loadPanel = new JPanel();
             loadPanel.add(new JLabel("Lädt, bitte warten"));
-            cardLayout.add(loadPanel, "load");
 
+            cardLayout.add(loadPanel, "loadPanel");
             cardLayout.add(gamesViewScroll, "gameView");
-            cardLayout.add(gridView, "gridView");
+            cardLayout.add(gridViewScroll, "gridView");
 
             //cl.show(cardLayout, "gameView");
 
@@ -81,7 +81,6 @@ public class View extends JFrame {
     }
 
     public void updateGrid(Game[] games, SubController c){
-        cl.show(cardLayout, "load");
         gridView.updateGrid(games, c);
         cl.show(cardLayout, "gridView");
     }
@@ -98,6 +97,10 @@ public class View extends JFrame {
 
     public String getSearchString(){
         return gamesList.getSearchString();
+    }
+
+    public void setLoad(){
+        cl.show(cardLayout, "loadPanel");
     }
 
 }
