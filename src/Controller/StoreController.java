@@ -11,19 +11,23 @@ public class StoreController extends SubController {
 
     Game[] games;
 
-    public StoreController(Store store, Controller controller, Library library, View view) {
-        this.controller = controller;
-        this.library = library;
-        this.view = view;
+    public StoreController(Store store, SubController previous, Controller controller, Library library, View view) {
+        super(previous, controller, library, view);
         games = this.library.getGamesFrom(store);
+        activate();
+    }
 
+    @Override
+    public void activate() {
+        super.activate();
         view.updateGrid(games, this);
     }
 
     public void actionPerformed(ActionEvent event) {
         try {
             int index = Integer.parseInt(event.getActionCommand());
-            controller.updateGame(games[index]);
+            isActive = false;
+            next = new GameController(games[index], this, controller, library, view);
         }
         catch (Exception e) {
             e.printStackTrace();

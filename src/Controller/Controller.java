@@ -20,7 +20,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     private final View view;
     public final Library library;
 
-    private SubController activeController;
+    private SubController rootController;
 
     Game game1;
     Game game2;
@@ -43,7 +43,7 @@ public class Controller implements ActionListener, ListSelectionListener {
         addGame(game1);
         addGame(game2);
 
-        updateGame(game);
+        rootController = new GameController(game, null, this, library, view);
     }
 
 
@@ -60,48 +60,24 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
 
-    public void updateGame(Game game) {
-        activeController = new GameController(game, this, library, view);
-    }
-
-    public void updateStore(Store store) {
-        activeController = new StoreController(store, this, library, view);
-    }
-
-    public void updateTag(Tag tag) {
-        activeController = new TagController(tag, this, library, view);
-    }
-
-    public void updateGenre(Genre genre) {
-        activeController = new GenreController(genre, this, library, view);
-    }
-
-    public void updatePlatform(Platform platform) {
-        activeController = new PlatformController(platform, this, library, view);
-    }
-
-    public void updateSearch(String query) {
-        activeController = new SearchController(query, this, library, view);
-    }
-
-    public void saveLibrary() {
-        try {
-            FileOutputStream file = new FileOutputStream(libraryPath);
-            ObjectOutputStream objOut = new ObjectOutputStream(file);
-            objOut.writeObject(library);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+    public void removeGame(Game game) {
+        if (library.removeGame(game)) {
+            try {
+                view.updateList(library.getAllGameNames());
+                DataIO.saveLibrary(library);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Search":
-                updateSearch(view.getSearchString());
+                rootController.addSearchCon(view.getSearchString());
         }
 
     }
@@ -109,7 +85,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
         try {
-            updateGame(library.getGame(view.getListString(e.getFirstIndex())));
+            rootController.addGameCon(library.getGame(view.getListString(e.getFirstIndex())));
         }
         catch (Exception exception) {
             exception.printStackTrace();

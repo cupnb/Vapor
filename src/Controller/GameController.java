@@ -16,11 +16,11 @@ public class GameController extends SubController {
     Genre[] genres;
     Platform[] platforms;
     Game game;
+    String[] gameInfo;
+    ImageIcon image;
 
-    public GameController(Game game, Controller controller, Library library, View view) {
-        this.controller = controller;
-        this.library = library;
-        this.view = view;
+    public GameController(Game game, SubController previous, Controller controller, Library library, View view) {
+        super(previous, controller, library, view);
         this.game = game;
 
         int [] storeIds = game.getStores();
@@ -47,7 +47,7 @@ public class GameController extends SubController {
             platforms[i] = library.getPlatform(platformIds[i]);
         }
 
-        String[] gameInfo = new String[9];
+        gameInfo = new String[9];
 
 
 
@@ -56,7 +56,7 @@ public class GameController extends SubController {
 
         BufferedImage pic = game.loadImage();
         //Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 500));
-        ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_FAST));
+        image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_FAST));
 
         gameInfo[2] = game.getDescription();
 
@@ -86,8 +86,12 @@ public class GameController extends SubController {
         gameInfo[6] = tagString;
         gameInfo[7] = platformString;
         gameInfo[8] = storeString;
+        activate();
+    }
 
-
+    @Override
+    public void activate() {
+        super.activate();
         this.view.updateGame(gameInfo, image, game.getIsLocal(), this);
     }
 
@@ -95,24 +99,35 @@ public class GameController extends SubController {
         try {
             String[] action = event.getActionCommand().split(":");
             int index = Integer.parseInt(action[1]);
+            isActive = false;
             switch (action[0]) {
                 case "Store":
-                    controller.updateStore(stores[index]);
+                    next = new StoreController(stores[index], this, controller, library, view);
                     break;
                 case "Tag":
-                    controller.updateTag(tags[index]);
+                    next = new TagController(tags[index], this, controller, library, view);
                     break;
                 case "Genre":
-                    controller.updateGenre(genres[index]);
+                    next = new GenreController(genres[index], this, controller, library, view);
                     break;
                 case "Platform":
-                    controller.updatePlatform(platforms[index]);
+                    next = new PlatformController(platforms[index], this, controller, library, view);
                     break;
                 case "add":
                     controller.addGame(game);
+                    view.updateList(library.getAllGameNames());
+                    activate();
                     break;
-                case "remove":
-                    library.removeGame(game);
+                case "delete":
+                    controller.removeGame(game);
+                    view.updateList(library.getAllGameNames());
+                    activate();
+                    break;
+                case "similar":
+                    next = new SimilarController(game, this, controller, library, view);
+                    break;
+                default:
+                    isActive = true;
                     break;
             }
         }

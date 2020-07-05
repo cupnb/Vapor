@@ -7,15 +7,15 @@ import Model.Rawg;
 import View.View;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
-public class SearchController extends SubController {
+public class SimilarController extends SubController {
 
     Game[] games;
 
-
-    public SearchController(String query, SubController previous, Controller controller, Library library, View view) {
+    public SimilarController(Game game, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
-        games = searchRequest(query);
+        games = similarRequest(game);
         activate();
     }
 
@@ -25,18 +25,19 @@ public class SearchController extends SubController {
         view.updateGrid(games, this);
     }
 
-    public Game[] searchRequest(String query) {
+    private Game[] similarRequest(Game game) {
         try {
-            Json result = new Json(Rawg.searchRequest(10, query));
+            Json result = new Json(Rawg.similarRequest(game.getId()));
 
             Object[] objects = (Object[]) result.getContent("results");
+
             Json[] json_games = new Json[objects.length];
             int i = 0;
             for (Object o : objects){
                 json_games[i] = (Json) o;
                 i++;
             }
-            
+
 
             Game[] games = new Game[json_games.length];
             for(i = 0; i < json_games.length; i++) {
@@ -44,13 +45,11 @@ public class SearchController extends SubController {
             }
             return games;
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            return new Game[0];
         }
+        return null;
     }
-
 
     public void actionPerformed(ActionEvent event) {
         try {

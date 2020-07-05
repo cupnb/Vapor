@@ -59,7 +59,7 @@ public class GameView extends JPanel implements Scrollable{
         buttonPanel = new JPanel();
         addDelButton = new JButton("");
         sugButton = new JButton("Ähnliche Spiele");
-        sugButton.setActionCommand("similar");
+        sugButton.setActionCommand("similar:0");
 
         buttonPanel.add(addDelButton);
         buttonPanel.add(sugButton);
