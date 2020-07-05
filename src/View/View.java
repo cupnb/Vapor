@@ -14,6 +14,7 @@ public class View extends JFrame {
 
     private CardLayout cl;
     private JPanel cardLayout;
+    private JPanel loadPanel;
     private GamesList gamesList;
     private JScrollPane gamesViewScroll;
     private GameView gameView;
@@ -49,14 +50,15 @@ public class View extends JFrame {
             gamesViewScroll = new JScrollPane(gameView);
             gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-            JPanel loadPanel = new JPanel();
+            loadPanel = new JPanel();
             loadPanel.add(new JLabel("Lädt, bitte warten"));
 
-            cardLayout.add(loadPanel, "loadPanel");
+
             cardLayout.add(gamesViewScroll, "gameView");
             cardLayout.add(gridViewScroll, "gridView");
+            cardLayout.add(loadPanel, "loadPanel");
 
-            //cl.show(cardLayout, "gameView");
+            cl.show(cardLayout, "loadPanel");
 
 
             panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gamesList, cardLayout);

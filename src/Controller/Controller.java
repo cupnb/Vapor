@@ -74,6 +74,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Search":
+                view.setLoad();
                 rootController.addSearchCon(view.getSearchString());
                 break;
 
