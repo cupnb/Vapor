@@ -1,23 +1,20 @@
 package View;
 
-import Controller.Controller;
-import Controller.GameController;
 import Controller.SubController;
 import Model.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class GridView extends JPanel {
 
-    private JScrollPane scrollPane;
     private JPanel grid;
+
     public GridView(){
-        scrollPane = new JScrollPane();
+
         grid = new JPanel();
-        grid.setLayout(new GridLayout(0, 5));
+        grid.setLayout(new GridLayout(0, 3));
 
         add(grid);
     }
@@ -34,6 +31,7 @@ public class GridView extends JPanel {
                 ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_FAST));
                 j.setIcon(image);
             }
+            j.setHorizontalAlignment(SwingConstants.LEFT);
             j.addActionListener(c);
             j.setActionCommand(Integer.toString(i));
             grid.add(j);
