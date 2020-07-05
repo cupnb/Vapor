@@ -3,6 +3,7 @@ package View;
 import Controller.SubController;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class GameView extends JPanel implements Scrollable{
@@ -12,6 +13,10 @@ public class GameView extends JPanel implements Scrollable{
     private JPanel titlePanel;
     private JLabel title;
     private JLabel release;
+    private JPanel buttonPanel;
+    private JButton addDelButton;
+    private JButton sugButton;
+
     private JScrollPane descriptionPane;
     private JTextPane description;
     private JLabel rating;
@@ -51,6 +56,16 @@ public class GameView extends JPanel implements Scrollable{
         titlePanel.add(release);
         //titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
+        buttonPanel = new JPanel();
+        addDelButton = new JButton("");
+        sugButton = new JButton("Ähnliche Spiele");
+        sugButton.setActionCommand("similarGames");
+
+        buttonPanel.add(addDelButton);
+        buttonPanel.add(sugButton);
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+
         descriptionPane = new JScrollPane();
         description  = new JTextPane();
         //description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -80,6 +95,7 @@ public class GameView extends JPanel implements Scrollable{
         titleConstraints.gridy = 0;
         titleConstraints.weightx = 0.0;
         titleConstraints.weighty = 0.0;
+        titleConstraints.gridheight = 2;
         titleConstraints.anchor = GridBagConstraints.NORTHWEST;
         add(titleImagePanel, titleConstraints);
 
@@ -93,8 +109,16 @@ public class GameView extends JPanel implements Scrollable{
 
         titleConstraints = new GridBagConstraints();
 
-        titleConstraints.gridx = 0;
+        titleConstraints.gridx = 1;
         titleConstraints.gridy = 1;
+        titleConstraints.anchor = GridBagConstraints.WEST;
+
+        add(buttonPanel, titleConstraints);
+
+        titleConstraints = new GridBagConstraints();
+
+        titleConstraints.gridx = 0;
+        titleConstraints.gridy = 2;
         titleConstraints.gridwidth = 2;
 
 
@@ -108,7 +132,7 @@ public class GameView extends JPanel implements Scrollable{
         titleConstraints = new GridBagConstraints();
 
         titleConstraints.gridx = 0;
-        titleConstraints.gridy = 2;
+        titleConstraints.gridy = 3;
         titleConstraints.gridwidth = 2;
 
         titleConstraints.fill = GridBagConstraints.BOTH;
@@ -122,10 +146,26 @@ public class GameView extends JPanel implements Scrollable{
 
     }
 
-    public void updateGame(String [] gameInfo, ImageIcon image, SubController c) {
+    public void updateGame(String [] gameInfo, ImageIcon image, Boolean inLibrary, SubController c) {
         title.setText(gameInfo[0]);
         release.setText(gameInfo[1]);
         titleImage.setIcon(image);
+
+        if (inLibrary){
+            addDelButton.setText("Spiel aus der Bibliothek entfernen");
+            addDelButton.setActionCommand("delete");
+        } else {
+            addDelButton.setText("Spiel zur Bibliothek hinzufügen");
+            addDelButton.setActionCommand("add");
+        }
+
+        for (ActionListener a : addDelButton.getActionListeners()){
+            addDelButton.removeActionListener(a);
+            sugButton.removeActionListener(a);
+        }
+        addDelButton.addActionListener(c);
+        sugButton.addActionListener(c);
+
         description.setContentType("text/html");
         description.setText(gameInfo[2]);
         rating.setText(gameInfo[3]);
