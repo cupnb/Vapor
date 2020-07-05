@@ -15,11 +15,13 @@ public class GameController extends SubController {
     Tag[] tags;
     Genre[] genres;
     Platform[] platforms;
+    Game game;
 
     public GameController(Game game, Controller controller, Library library, View view) {
         this.controller = controller;
         this.library = library;
         this.view = view;
+        this.game = game;
 
         int [] storeIds = game.getStores();
         stores = new Store[storeIds.length];
@@ -86,7 +88,7 @@ public class GameController extends SubController {
         gameInfo[8] = storeString;
 
 
-        this.view.updateGame(gameInfo, image, this);
+        this.view.updateGame(gameInfo, image, game.getIsLocal(), this);
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -106,6 +108,11 @@ public class GameController extends SubController {
                 case "Platform":
                     controller.updatePlatform(platforms[index]);
                     break;
+                case "add":
+                    library.addGame(game);
+                    break;
+                case "remove":
+                    library.removeGame(game);
             }
         }
         catch (Exception e) {

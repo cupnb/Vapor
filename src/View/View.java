@@ -67,7 +67,7 @@ public class View extends JFrame {
         gamesList.updateGames(games);
     }
 
-    public void updateGame(String[] gameInfo, ImageIcon image, SubController c){
+    public void updateGame(String[] gameInfo, ImageIcon image, boolean isLocal, SubController c){
         gameView.updateGame(gameInfo, image, c);
         cl.show(cardLayout, "gameView");
     }

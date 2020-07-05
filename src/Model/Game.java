@@ -16,11 +16,12 @@ public class Game extends LibraryObject{
 
     String[] screenshots;
 
-
+    boolean isLocal;
 
     public Game(int id) {
         try {
             this.id = id;
+            isLocal = false;
             classString = "game";
             String stringRes = Rawg.gameRequest(id);
             Json json = new Json(stringRes);
@@ -111,5 +112,14 @@ public class Game extends LibraryObject{
     public int getMetacritic() {
         return metacritic;
     }
+
+    public void setIsLocal(boolean bool) {
+        isLocal = bool;
+    }
+
+    public boolean getIsLocal() {
+        return isLocal;
+    }
+
 
 }
