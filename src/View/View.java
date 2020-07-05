@@ -46,22 +46,17 @@ public class View extends JFrame {
             cardLayout = new JPanel(cl);
             gamesList = new GamesList(controller);
             gameView = new GameView();
-            gameView.setName("GameView");
+            gameView.setName("gameView");
             gridView = new GridView();
-            gridView.setName("GridView");
+            gridView.setName("gridView");
 
             gamesViewScroll = new JScrollPane(gameView);
             gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-            cardLayout.add(gamesViewScroll);
-            cardLayout.add(gridView);
+            cardLayout.add(gamesViewScroll, "gameView");
+            cardLayout.add(gridView, "gridView");
 
-            load = new JPanel();
-            load.add(new JLabel("Lädt, bitte warten"));
-            load.setName("Load");
-            cardLayout.add(load);
-
-            cl.show(cardLayout, "Load");
+            //cl.show(cardLayout, "gameView");
 
 
             panel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gamesList, cardLayout);
@@ -80,7 +75,7 @@ public class View extends JFrame {
     }
 
     public void updateGame(String[] gameInfo, ImageIcon image, boolean isLocal, SubController c){
-        gameView.updateGame(gameInfo, image, c);
+        gameView.updateGame(gameInfo, image, isLocal, c);
 
         cl.show(cardLayout, "gameView");
     }

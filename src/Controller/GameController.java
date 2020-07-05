@@ -56,7 +56,7 @@ public class GameController extends SubController {
 
         BufferedImage pic = game.loadImage();
         //Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 500));
-        ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_SMOOTH));
+        ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_FAST));
 
         gameInfo[2] = game.getDescription();
 
@@ -109,10 +109,11 @@ public class GameController extends SubController {
                     controller.updatePlatform(platforms[index]);
                     break;
                 case "add":
-                    library.addGame(game);
+                    controller.addGame(game);
                     break;
                 case "remove":
                     library.removeGame(game);
+                    break;
             }
         }
         catch (Exception e) {

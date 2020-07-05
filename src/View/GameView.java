@@ -59,7 +59,7 @@ public class GameView extends JPanel implements Scrollable{
         buttonPanel = new JPanel();
         addDelButton = new JButton("");
         sugButton = new JButton("Ähnliche Spiele");
-        sugButton.setActionCommand("similarGames");
+        sugButton.setActionCommand("similar");
 
         buttonPanel.add(addDelButton);
         buttonPanel.add(sugButton);
@@ -153,10 +153,10 @@ public class GameView extends JPanel implements Scrollable{
 
         if (inLibrary){
             addDelButton.setText("Spiel aus der Bibliothek entfernen");
-            addDelButton.setActionCommand("delete");
+            addDelButton.setActionCommand("delete:0");
         } else {
             addDelButton.setText("Spiel zur Bibliothek hinzufügen");
-            addDelButton.setActionCommand("add");
+            addDelButton.setActionCommand("add:0");
         }
 
         for (ActionListener a : addDelButton.getActionListeners()){

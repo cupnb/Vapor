@@ -31,7 +31,7 @@ public class GridView extends JPanel {
             BufferedImage pic = g.loadImage();
             if (pic != null){
                 Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(100, 100));
-                ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH));
+                ImageIcon image = new ImageIcon(pic.getScaledInstance(d.width, d.height, Image.SCALE_FAST));
                 j.setIcon(image);
             }
             j.addActionListener(c);
