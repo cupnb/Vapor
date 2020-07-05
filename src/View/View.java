@@ -10,8 +10,6 @@ import com.formdev.flatlaf.*;
 
 public class View extends JFrame {
 
-    private Controller controller;
-
     private JSplitPane panel;
 
     private CardLayout cl;
@@ -40,8 +38,6 @@ public class View extends JFrame {
             //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
 
-            this.controller = controller;
-
             cl = new CardLayout();
             cardLayout = new JPanel(cl);
             gamesList = new GamesList(controller);
@@ -52,6 +48,10 @@ public class View extends JFrame {
 
             gamesViewScroll = new JScrollPane(gameView);
             gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+            JPanel loadPanel = new JPanel();
+            loadPanel.add(new JLabel("Lädt, bitte warten"));
+            cardLayout.add(loadPanel, "load");
 
             cardLayout.add(gamesViewScroll, "gameView");
             cardLayout.add(gridView, "gridView");
@@ -76,11 +76,12 @@ public class View extends JFrame {
 
     public void updateGame(String[] gameInfo, ImageIcon image, boolean isLocal, SubController c){
         gameView.updateGame(gameInfo, image, isLocal, c);
-
         cl.show(cardLayout, "gameView");
+        gamesViewScroll.getVerticalScrollBar().setValue(gamesViewScroll.getVerticalScrollBar().getMinimum());
     }
 
     public void updateGrid(Game[] games, SubController c){
+        cl.show(cardLayout, "load");
         gridView.updateGrid(games, c);
         cl.show(cardLayout, "gridView");
     }

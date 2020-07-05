@@ -17,7 +17,6 @@ public class GameView extends JPanel implements Scrollable{
     private JButton addDelButton;
     private JButton sugButton;
 
-    private JScrollPane descriptionPane;
     private JTextPane description;
     private JLabel rating;
     private JLabel metacritic;
@@ -65,8 +64,6 @@ public class GameView extends JPanel implements Scrollable{
         buttonPanel.add(sugButton);
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-
-        descriptionPane = new JScrollPane();
         description  = new JTextPane();
         //description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
