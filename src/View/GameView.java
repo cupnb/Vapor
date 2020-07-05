@@ -49,15 +49,15 @@ public class GameView extends JPanel implements Scrollable{
 
         titlePanel.add(title);
         titlePanel.add(release);
-        titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         descriptionPane = new JScrollPane();
         description  = new JTextPane();
-        description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         tablePanel = new JScrollPane();
         table = new JPanel(new GridBagLayout());
-        table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         rating = new JLabel("", SwingConstants.LEFT);
         metacritic = new JLabel("", SwingConstants.LEFT);

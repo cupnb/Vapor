@@ -91,4 +91,8 @@ public class View extends JFrame {
                 (int) (imageSize.height * ratio));
     }
 
+    public String getSearchString(){
+        return gamesList.getSearchString();
+    }
+
 }

@@ -100,8 +100,8 @@ public class Controller implements ActionListener, ListSelectionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "search":
-                //String query = view.
+            case "Search":
+                updateSearch(view.getSearchString());
         }
 
     }

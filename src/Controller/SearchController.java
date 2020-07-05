@@ -17,15 +17,24 @@ public class SearchController extends SubController {
         this.library = library;
         this.view = view;
         games = searchRequest(query);
-
+        view.updateGrid(games, this);
     }
 
     public Game[] searchRequest(String query) {
         try {
             Json result = new Json(Rawg.searchRequest(5, query));
-            Json[] json_games = (Json[]) result.getContent("results");
+
+            Object[] objects = (Object[]) result.getContent("results");
+            Json[] json_games = new Json[objects.length];
+            int i = 0;
+            for (Object o : objects){
+                json_games[i] = (Json) o;
+                i++;
+            }
+            
+
             Game[] games = new Game[json_games.length];
-            for(int i = 0; i < json_games.length; i++) {
+            for(i = 0; i < json_games.length; i++) {
                 games[i] = library.getGame((int) json_games[i].getContent("id"));
             }
             return games;
