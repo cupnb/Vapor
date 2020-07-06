@@ -1,3 +1,5 @@
+//TODO: AllGames, Anzeige was im Grid gerade angezeigt wird
+
 package View;
 
 import Controller.Controller;

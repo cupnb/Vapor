@@ -238,7 +238,15 @@ public class Library implements Serializable {
     }
 
     public Game[] getAllGames() {
-        return (Game[]) games.toArray();
+        Object[] objects = games.toArray();
+
+        Game[] games = new Game[objects.length];
+        int i = 0;
+        for (Object o : objects){
+            games[i] = (Game) objects[i];
+            i++;
+        }
+        return games;
     }
 
     public String[] getAllGameNames() {

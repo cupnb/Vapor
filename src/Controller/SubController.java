@@ -19,6 +19,7 @@ public abstract class SubController implements ActionListener {
         this.controller = controller;
         this.library = library;
         this.view = view;
+        this.isActive = true;
     }
 
     public void activate() {
@@ -70,6 +71,16 @@ public abstract class SubController implements ActionListener {
         }
         else if (next != null) {
             next.addSearchCon(query);
+        }
+    }
+
+    public void addAllCon() {
+        if (isActive) {
+            isActive = false;
+            next = new AllController(this, controller, library, view);
+        }
+        else if (next != null) {
+            next.addAllCon();
         }
     }
 }

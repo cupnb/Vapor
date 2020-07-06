@@ -18,8 +18,6 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     private SubController rootController;
 
-    Game game1;
-    Game game2;
 
     public Controller() throws FileSystemException {
 
@@ -31,15 +29,7 @@ public class Controller implements ActionListener, ListSelectionListener {
 
         view.updateList(library.getAllGameNames());
 
-
-        Game game = new Game(53432);
-        game1 = new Game(3498);
-        game2 = new Game(4200);
-        addGame(game);
-        addGame(game1);
-        addGame(game2);
-
-        rootController = new GameController(game, null, this, library, view);
+        rootController = new AllController(null, this, library, view);
     }
 
 
@@ -79,7 +69,7 @@ public class Controller implements ActionListener, ListSelectionListener {
                 break;
 
             case "allGames":
-                System.out.println("Show all games");
+                rootController.addAllCon();
                 break;
 
             case "back":

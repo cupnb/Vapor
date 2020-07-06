@@ -52,7 +52,13 @@ public class GameController extends SubController {
 
 
         gameInfo[0] = game.getName();
-        gameInfo[1] = "Release: " + game.getRelease().toString();
+
+        if (game.getRelease() == null){
+            gameInfo[1] = "Release: Unbekannt";
+        } else {
+            gameInfo[1] = "Release: " + game.getRelease().toString();
+        }
+
 
         BufferedImage pic = game.loadImage();
         //Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 500));
