@@ -113,4 +113,12 @@ public class View extends JFrame {
         cl.show(cardLayout, "loadPanel");
     }
 
+    public void setForwardButton(boolean b){
+        gamesList.setForwardButton(b);
+    }
+
+    public void setBackwardButton(boolean b){
+        gamesList.setBackwardButton(b);
+    }
+
 }

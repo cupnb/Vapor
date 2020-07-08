@@ -7,10 +7,14 @@ import java.awt.event.ActionListener;
 
 public class GamesList extends JSplitPane{
 
-    private JPanel listPanel;
     private JPanel buttonPanel;
+    private JButton back;
+    private JButton forward;
+
+    private JPanel listPanel;
     private JList<String> list;
     private JScrollPane jScrollPane;
+
     private JPanel searchPane;
     private HintTextField textField;
     private JButton search;
@@ -24,8 +28,8 @@ public class GamesList extends JSplitPane{
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
 
-        JButton back = new JButton("Zurück");
-        JButton forward = new JButton("Vorwärts");
+        back = new JButton("Zurück");
+        forward = new JButton("Vorwärts");
         JButton allGames = new JButton("Alle Spiele");
 
         back.addActionListener(c);
@@ -89,5 +93,13 @@ public class GamesList extends JSplitPane{
 
     public String getSearchString(){
         return textField.getText();
+    }
+
+    public void setForwardButton(boolean b){
+        forward.setEnabled(b);
+    }
+
+    public void setBackwardButton(boolean b){
+        back.setEnabled(b);
     }
 }
