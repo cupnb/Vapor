@@ -13,13 +13,13 @@ public class AllController extends SubController {
 
     public AllController(SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
-        games = this.library.getAllGames();
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
+        games = this.library.getAllGames();
         view.updateGrid(games, "Alle Spiele", this);
     }
 

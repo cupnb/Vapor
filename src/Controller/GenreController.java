@@ -10,19 +10,19 @@ import java.awt.event.ActionEvent;
 public class GenreController extends SubController {
 
     Game[] games;
-    String genre;
+    Genre genre;
 
     public GenreController(Genre genre, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
-        games = this.library.getGamesFrom(genre);
-        this.genre = genre.getName();
+        this.genre = genre;
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, genre, this);
+        games = this.library.getGamesFrom(genre);
+        view.updateGrid(games, genre.getName(), this);
     }
 
     public void actionPerformed(ActionEvent event) {

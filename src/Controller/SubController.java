@@ -14,15 +14,20 @@ public abstract class SubController implements ActionListener {
     SubController previous;
     boolean isActive;
 
+    private static final int maxControllers = 10;
+
     public SubController(SubController previous, Controller controller, Library library, View view) {
         this.previous = previous;
         this.controller = controller;
         this.library = library;
         this.view = view;
+        cutControllerStack(maxControllers);
     }
 
     public void activate() {
         isActive = true;
+        view.setForwardButton(next != null);
+        view.setBackwardButton(previous != null);
     }
 
     public void activateNext() {
@@ -70,6 +75,17 @@ public abstract class SubController implements ActionListener {
         }
         else if (next != null) {
             next.addSearchCon(query);
+        }
+    }
+
+    public void cutControllerStack(int remaining) {
+        System.out.println(remaining);
+        if (remaining <= 0) {
+            previous = null;
+            controller.setRootController(this);
+        }
+        else if(previous != null) {
+            previous.cutControllerStack(remaining - 1);
         }
     }
 

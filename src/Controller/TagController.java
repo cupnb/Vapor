@@ -10,19 +10,19 @@ import java.awt.event.ActionEvent;
 public class TagController extends SubController{
 
     Game[] games;
-    private String tag;
+    Tag tag;
 
     public TagController(Tag tag, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
-        games = this.library.getGamesFrom(tag);
-        this.tag = tag.getName();
+        this.tag = tag;
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, tag, this);
+        games = this.library.getGamesFrom(tag);
+        view.updateGrid(games, tag.getName(), this);
     }
 
     public void actionPerformed(ActionEvent event) {

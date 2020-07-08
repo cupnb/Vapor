@@ -10,19 +10,19 @@ import java.awt.event.ActionEvent;
 public class PlatformController extends SubController {
 
     Game[] games;
-    private String platform;
+    Platform platform;
 
     public PlatformController(Platform platform, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
-        games = this.library.getGamesFrom(platform);
-        this.platform = platform.getName();
+        this.platform = platform;
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, platform, this);
+        games = this.library.getGamesFrom(platform);
+        view.updateGrid(games, platform.getName(), this);
     }
 
     public void actionPerformed(ActionEvent event) {
