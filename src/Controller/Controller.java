@@ -5,8 +5,11 @@ import View.View;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.*;
 import java.nio.file.FileSystemException;
 
@@ -59,6 +62,11 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
 
+    public void setRootController(SubController controller) {
+        rootController = controller;
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -96,4 +104,5 @@ public class Controller implements ActionListener, ListSelectionListener {
         }
 
     }
+
 }
