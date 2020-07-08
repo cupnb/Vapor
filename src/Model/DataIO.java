@@ -91,6 +91,9 @@ public abstract class DataIO {
     }
 
     public static void storeTempImage(int id, String classString, String url_string) {
+        if(url_string == null || url_string.equals("")) {
+            return;
+        }
         File destination = new File(String.format("%s/temp/%s_%d.jpg", resourcePath, classString, id));
         try {
             ImageIO.write(downloadImage(url_string), "JPG", destination);
@@ -100,6 +103,9 @@ public abstract class DataIO {
     }
 
     public static boolean storePermImage(int id, String classString, String url_string) {
+        if(url_string == null || url_string.equals("")) {
+            return false;
+        }
         File source = new File(String.format("%s/temp/%s_%d.jpg", resourcePath, classString, id));
         File destination = new File(String.format("%s/image/%s/%d.jpg", resourcePath, classString, id));
         try {
@@ -114,30 +120,32 @@ public abstract class DataIO {
             return true;
 
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
     }
 
     public static BufferedImage loadTempImage(int id, String classString, String url_string) {
+        if(url_string == null || url_string.equals("")) {
+            return loadNoImage();
+        }
         File source = new File(String.format("%s/temp/%s_%d.jpg", resourcePath, classString, id));
         try {
             return ImageIO.read(source);
         } catch (IOException e) {
-            e.printStackTrace();
             storeTempImage(id, classString, url_string);
             try {
                 return ImageIO.read(source);
             } catch (IOException e2) {
-                e2.printStackTrace();
-                System.out.println("FATAL IMAGE ERROR");
-                return null;
+                return loadNoImage();
             }
         }
 
     }
 
     public static BufferedImage loadPermImage(int id, String classString, String url_string) {
+        if(url_string == null || url_string.equals("")) {
+            return loadNoImage();
+        }
         File source = new File(String.format("%s/image/%s/%d.jpg", resourcePath, classString, id));
         try {
             return ImageIO.read(source);
@@ -147,9 +155,7 @@ public abstract class DataIO {
             try {
                 return ImageIO.read(source);
             } catch (IOException e2) {
-                e2.printStackTrace();
-                System.out.println("FATAL IMAGE ERROR");
-                return null;
+                return loadNoImage();
             }
         }
     }
@@ -161,6 +167,17 @@ public abstract class DataIO {
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private static BufferedImage loadNoImage() {
+        try {
+            return ImageIO.read(DataIO.class.getResource("/ImageFiles/noImage.png"));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("FATAL IMAGE ERROR");
+            return null;
         }
     }
 
