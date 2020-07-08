@@ -19,7 +19,6 @@ public abstract class SubController implements ActionListener {
         this.controller = controller;
         this.library = library;
         this.view = view;
-        this.isActive = true;
     }
 
     public void activate() {

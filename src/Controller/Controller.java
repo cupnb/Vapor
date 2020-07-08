@@ -86,11 +86,13 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        try {
-            rootController.addGameCon(library.getGame(view.getListString(e.getFirstIndex())));
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
+        if (!e.getValueIsAdjusting()){
+            try {
+                rootController.addGameCon(library.getGame(view.getListString(e.getFirstIndex())));
+            }
+            catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
 
     }
