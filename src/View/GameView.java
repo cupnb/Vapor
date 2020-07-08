@@ -86,57 +86,60 @@ public class GameView extends JPanel implements Scrollable{
         titleConstraints.fill = GridBagConstraints.NONE ;
         add(titleImage, titleConstraints);*/
 
-        GridBagConstraints titleConstraints = new GridBagConstraints();
+        GridBagConstraints constraints = new GridBagConstraints();
 
-        titleConstraints.gridx = 0;
-        titleConstraints.gridy = 0;
-        titleConstraints.weightx = 0.0;
-        titleConstraints.weighty = 0.0;
-        titleConstraints.gridheight = 2;
-        titleConstraints.anchor = GridBagConstraints.NORTHWEST;
-        add(titleImagePanel, titleConstraints);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.weightx = 0.0;
+        constraints.weighty = 0.0;
+        constraints.gridheight = 2;
+        constraints.anchor = GridBagConstraints.NORTHWEST;
+        add(titleImagePanel, constraints);
 
-        titleConstraints.gridx = 1;
-        titleConstraints.gridy = 0;
-        titleConstraints.weightx = 1.0;
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.weightx = 1.0;
         //titleConstraints.weighty = 1.0;
 
-        titleConstraints.fill = GridBagConstraints.HORIZONTAL;
-        add(titlePanel, titleConstraints);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(titlePanel, constraints);
 
-        titleConstraints = new GridBagConstraints();
+        constraints = new GridBagConstraints();
 
-        titleConstraints.gridx = 1;
-        titleConstraints.gridy = 1;
-        titleConstraints.anchor = GridBagConstraints.WEST;
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.anchor = GridBagConstraints.WEST;
 
-        add(buttonPanel, titleConstraints);
+        add(buttonPanel, constraints);
 
-        titleConstraints = new GridBagConstraints();
+        constraints = new GridBagConstraints();
 
-        titleConstraints.gridx = 0;
-        titleConstraints.gridy = 2;
-        titleConstraints.gridwidth = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
 
 
-        titleConstraints.fill = GridBagConstraints.HORIZONTAL;
-        titleConstraints.weightx = 1.0;
-        titleConstraints.weighty = 1.0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
 
-        titleConstraints.anchor = GridBagConstraints.NORTH;
-        add(description, titleConstraints);
+        constraints.anchor = GridBagConstraints.NORTH;
+        add(description, constraints);
 
-        titleConstraints = new GridBagConstraints();
+        constraints = new GridBagConstraints();
 
-        titleConstraints.gridx = 0;
-        titleConstraints.gridy = 3;
-        titleConstraints.gridwidth = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
 
-        titleConstraints.fill = GridBagConstraints.BOTH;
-        titleConstraints.weightx = 1.0;
-        titleConstraints.weighty = 0.0;
 
-        add(table, titleConstraints);
+        constraints.weightx = 1.0;
+        constraints.weighty = 0.0;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.insets = new Insets(10, 0, 10, 0);
+
+        add(table, constraints);
 
 
 
@@ -224,48 +227,55 @@ public class GameView extends JPanel implements Scrollable{
     }
 
     private void setupTable(){
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        table.add(new JLabel("Ratings: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 0;
-        table.add(rating, c);
+        GridBagConstraints tableConstraints = new GridBagConstraints();
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 0;
+        tableConstraints.anchor = GridBagConstraints.WEST;
+        tableConstraints.insets = new Insets(10, 10, 10, 0);
+        table.add(new JLabel("Ratings: ", SwingConstants.RIGHT), tableConstraints);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        table.add(new JLabel("Metacritic: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 1;
-        table.add(metacritic, c);
 
-        c.gridx = 0;
-        c.gridy = 2;
-        table.add(new JLabel("Genres: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 2;
-        table.add(genres, c);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 0;
+        table.add(rating, tableConstraints);
 
-        c.gridx = 0;
-        c.gridy = 3;
-        table.add(new JLabel("Tags: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 3;
-        table.add(tags, c);
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 1;
+        tableConstraints.insets = new Insets(0, 10, 0, 10);
+        table.add(new JLabel("Metacritic: ", SwingConstants.RIGHT), tableConstraints);
 
-        c.gridx = 0;
-        c.gridy = 4;
-        table.add(new JLabel("Platforms: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 4;
-        table.add(platforms, c);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 1;
+        tableConstraints.insets = new Insets(10, 10, 10, 0);
+        table.add(metacritic, tableConstraints);
 
-        c.gridx = 0;
-        c.gridy = 5;
-        table.add(new JLabel("Stores: ", SwingConstants.RIGHT), c);
-        c.gridx = 1;
-        c.gridy = 5;
-        table.add(stores, c);
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 2;
+        table.add(new JLabel("Genres: ", SwingConstants.RIGHT), tableConstraints);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 2;
+        table.add(genres, tableConstraints);
+
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 3;
+        table.add(new JLabel("Tags: ", SwingConstants.RIGHT), tableConstraints);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 3;
+        table.add(tags, tableConstraints);
+
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 4;
+        table.add(new JLabel("Platforms: ", SwingConstants.RIGHT), tableConstraints);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 4;
+        table.add(platforms, tableConstraints);
+
+        tableConstraints.gridx = 0;
+        tableConstraints.gridy = 5;
+        table.add(new JLabel("Stores: ", SwingConstants.RIGHT), tableConstraints);
+        tableConstraints.gridx = 1;
+        tableConstraints.gridy = 5;
+        table.add(stores, tableConstraints);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class AllController extends SubController {
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, this);
+        view.updateGrid(games, "Alle Spiele", this);
     }
 
     public void actionPerformed(ActionEvent event) {

@@ -22,7 +22,7 @@ public class SimilarController extends SubController {
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, this);
+        view.updateGrid(games, "Ähnliche Spiele", this);
     }
 
     private Game[] similarRequest(Game game) {

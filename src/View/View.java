@@ -6,8 +6,11 @@ import Controller.Controller;
 import Controller.SubController;
 import Model.Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
 import com.formdev.flatlaf.*;
 
 public class View extends JFrame {
@@ -29,14 +32,19 @@ public class View extends JFrame {
 
     public View(Controller controller) {
             super("VAPOR");
-        try {
-            if (useExternalFlatLaf) {
-                UIManager.setLookAndFeel(new FlatDarculaLaf());
+
+            try {
+                if (useExternalFlatLaf) {
+                    UIManager.setLookAndFeel(new FlatDarculaLaf());
+                }
+
+                setIconImage(ImageIO.read(View.class.getResource("/ImageFiles/vaporIcon3.jpg ")));
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
             setSize(1600, 900);
             //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
@@ -84,8 +92,8 @@ public class View extends JFrame {
         gamesViewScroll.getVerticalScrollBar().setValue(gamesViewScroll.getVerticalScrollBar().getMinimum());
     }
 
-    public void updateGrid(Game[] games, SubController c){
-        gridView.updateGrid(games, c);
+    public void updateGrid(Game[] games, String title, SubController c){
+        gridView.updateGrid(games, title, c);
         cl.show(cardLayout, "gridView");
     }
 

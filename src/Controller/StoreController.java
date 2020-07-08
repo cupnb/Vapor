@@ -10,17 +10,19 @@ import java.awt.event.ActionEvent;
 public class StoreController extends SubController {
 
     Game[] games;
+    private String store;
 
     public StoreController(Store store, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
         games = this.library.getGamesFrom(store);
+        this.store = store.getName();
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, this);
+        view.updateGrid(games, store, this);
     }
 
     public void actionPerformed(ActionEvent event) {

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Vapor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Vapor_jar</output-path>
+    <root id="archive" name="Vapor.jar">
+      <element id="module-output" name="Vapor" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/formdev/flatlaf/0.37/flatlaf-0.37.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Game;
-import Model.Json;
-import Model.Library;
-import Model.Rawg;
+import Model.*;
 import View.View;
 
 import java.awt.event.ActionEvent;
@@ -11,18 +8,20 @@ import java.awt.event.ActionEvent;
 public class SearchController extends SubController {
 
     Game[] games;
+    private String query;
 
 
     public SearchController(String query, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
         games = searchRequest(query);
+        this.query = query;
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, this);
+        view.updateGrid(games, query,this);
     }
 
     public Game[] searchRequest(String query) {
