@@ -2,16 +2,19 @@ package View;
 
 import Controller.Controller;
 import Controller.SubController;
+import Model.DataIO;
 import Model.Game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 
 import com.formdev.flatlaf.*;
 
-public class View extends JFrame {
+public class View extends JFrame implements WindowListener {
 
     private JSplitPane panel;
 
@@ -31,6 +34,8 @@ public class View extends JFrame {
     public View(Controller controller) {
             super("VAPOR");
 
+            addWindowListener(this);
+
             try {
                 if (useExternalFlatLaf) {
                     UIManager.setLookAndFeel(new FlatDarculaLaf());
@@ -42,7 +47,7 @@ public class View extends JFrame {
                 e.printStackTrace();
             }
 
-            setDefaultCloseOperation(EXIT_ON_CLOSE);
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             setSize(1600, 900);
             //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
@@ -121,4 +126,40 @@ public class View extends JFrame {
         gamesList.setBackwardButton(b);
     }
 
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        DataIO.dumpTempData();
+        dispose();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }
