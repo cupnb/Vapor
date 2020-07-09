@@ -12,9 +12,11 @@ public class GamesList extends JSplitPane{
     private JPanel buttonPanel;
     private JButton back;
     private JButton forward;
+    private JButton allGames;
     private final static ImageIcon backIcon = new ImageIcon(View.class.getResource("/ImageFiles/back.png"));
     private final static ImageIcon forwardIcon = new ImageIcon(View.class.getResource("/ImageFiles/forward.png"));
     private final static ImageIcon homeIcon = new ImageIcon(View.class.getResource("/ImageFiles/home.png"));
+    private final static ImageIcon searchIcon = new ImageIcon(View.class.getResource("/ImageFiles/search.png"));
 
     private JPanel listPanel;
     private JList<String> list;
@@ -35,7 +37,7 @@ public class GamesList extends JSplitPane{
 
         back = new JButton(backIcon);
         forward = new JButton(forwardIcon);
-        JButton allGames = new JButton(homeIcon);
+        allGames = new JButton(homeIcon);
 
         back.addActionListener(c);
         forward.addActionListener(c);
@@ -69,14 +71,15 @@ public class GamesList extends JSplitPane{
         add(listPanel);
 
         searchPane = new JPanel();
-        textField = new HintTextField("Spielesuche");
+        textField = new HintTextField("Game search");
         textField.setPreferredSize(new Dimension(300, 30));
         textField.setMaximumSize(new Dimension(300, 30));
         textField.setMinimumSize(new Dimension(300, 30));
 
         searchPane.setSize(500, 50);
 
-        search = new JButton("Search");
+        search = new JButton(searchIcon);
+        search.setActionCommand("Search");
         search.addActionListener(c);
 
         searchPane.add(textField);
