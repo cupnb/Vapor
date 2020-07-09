@@ -20,7 +20,7 @@ public class AllController extends SubController {
     public void activate() {
         super.activate();
         games = this.library.getAllGames();
-        view.updateGrid(games, "Alle Spiele", this);
+        view.updateGrid(games, "All Games", "All Games that are currently in the Library", this);
     }
 
     public void actionPerformed(ActionEvent event) {

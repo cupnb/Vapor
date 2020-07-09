@@ -22,7 +22,7 @@ public class StoreController extends SubController {
     public void activate() {
         super.activate();
         games = this.library.getGamesFrom(store);
-        view.updateGrid(games, store.getName(), this);
+        view.updateGrid(games, store.getName(), store.getDescription(), this);
     }
 
     public void actionPerformed(ActionEvent event) {

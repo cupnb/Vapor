@@ -11,12 +11,16 @@ public class GridView extends JPanel implements Scrollable {
 
     private JPanel grid;
     private JLabel label;
+    private JTextPane description;
 
     public GridView(){
         setLayout(new GridBagLayout());
 
         label = new JLabel("Test");
         label.setFont(new Font("SegoeUI", Font.PLAIN, 50));
+
+        description = new JTextPane();
+        description.setContentType("text/html");
 
         grid = new JPanel();
         grid.setLayout(new GridLayout(0, 3));
@@ -35,17 +39,24 @@ public class GridView extends JPanel implements Scrollable {
         constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 1;
-
+        constraints.insets = new Insets(0, 0, 10, 0);
         constraints.weightx = 1.0;
         constraints.weighty = 1.0;
         constraints.anchor = GridBagConstraints.NORTH;
-
-
         add(grid, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.weightx = 0.0;
+        constraints.weighty = 0.0;
+        constraints.fill = GridBagConstraints.BOTH;
+        add(description, constraints);
     }
 
-    public void updateGrid(Game[] games, String title, SubController c){
+    public void updateGrid(Game[] games, String title, String description, SubController c){
         label.setText(title);
+        this.description.setText(description);
         grid.removeAll();
         int i = 0;
         JButton j;

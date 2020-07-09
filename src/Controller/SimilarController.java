@@ -12,17 +12,19 @@ import java.io.IOException;
 public class SimilarController extends SubController {
 
     Game[] games;
+    String gameName;
 
     public SimilarController(Game game, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
         games = similarRequest(game);
+        gameName = game.getName();
         activate();
     }
 
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, "Ähnliche Spiele", this);
+        view.updateGrid(games, "Ähnliche Spiele: " + gameName, "Shows similar games to " + gameName, this);
     }
 
     private Game[] similarRequest(Game game) {

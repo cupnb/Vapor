@@ -22,7 +22,7 @@ public class GenreController extends SubController {
     public void activate() {
         super.activate();
         games = this.library.getGamesFrom(genre);
-        view.updateGrid(games, genre.getName(), this);
+        view.updateGrid(games, genre.getName(), genre.getDescription(), this);
     }
 
     public void actionPerformed(ActionEvent event) {

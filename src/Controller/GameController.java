@@ -54,7 +54,7 @@ public class GameController extends SubController {
         gameInfo[0] = game.getName();
 
         if (game.getRelease() == null){
-            gameInfo[1] = "Release: Unbekannt";
+            gameInfo[1] = "Release: Unknown";
         } else {
             gameInfo[1] = "Release: " + game.getRelease().toString();
         }

@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 public class SearchController extends SubController {
 
     Game[] games;
-    private String query;
+
+    private final String query;
+    private final static int AMOUNT_SEARCH = 10;
 
 
     public SearchController(String query, SubController previous, Controller controller, Library library, View view) {
@@ -21,12 +23,12 @@ public class SearchController extends SubController {
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, query,this);
+        view.updateGrid(games, query,"Up to " + AMOUNT_SEARCH + " games that have been found for the query: " + query, this);
     }
 
     public Game[] searchRequest(String query) {
         try {
-            Json result = new Json(Rawg.searchRequest(10, query));
+            Json result = new Json(Rawg.searchRequest(AMOUNT_SEARCH, query));
 
             Object[] objects = (Object[]) result.getContent("results");
             Json[] json_games = new Json[objects.length];

@@ -22,7 +22,7 @@ public class PlatformController extends SubController {
     public void activate() {
         super.activate();
         games = this.library.getGamesFrom(platform);
-        view.updateGrid(games, platform.getName(), this);
+        view.updateGrid(games, platform.getName(), platform.getDescription(), this);
     }
 
     public void actionPerformed(ActionEvent event) {

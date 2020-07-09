@@ -1,6 +1,8 @@
 package View;
 
 import Controller.Controller;
+import Model.DataIO;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -10,6 +12,9 @@ public class GamesList extends JSplitPane{
     private JPanel buttonPanel;
     private JButton back;
     private JButton forward;
+    private final static ImageIcon backIcon = new ImageIcon(View.class.getResource("/ImageFiles/back.png"));
+    private final static ImageIcon forwardIcon = new ImageIcon(View.class.getResource("/ImageFiles/forward.png"));
+    private final static ImageIcon homeIcon = new ImageIcon(View.class.getResource("/ImageFiles/home.png"));
 
     private JPanel listPanel;
     private JList<String> list;
@@ -28,9 +33,9 @@ public class GamesList extends JSplitPane{
         listPanel = new JPanel();
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
 
-        back = new JButton("Zurück");
-        forward = new JButton("Vorwärts");
-        JButton allGames = new JButton("Alle Spiele");
+        back = new JButton(backIcon);
+        forward = new JButton(forwardIcon);
+        JButton allGames = new JButton(homeIcon);
 
         back.addActionListener(c);
         forward.addActionListener(c);
