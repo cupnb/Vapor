@@ -65,7 +65,7 @@ public abstract class Rawg {
     private static String pushGetRequest(URL url) throws IOException {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", "For Testing. benno.schaab@gmail.com");
+        con.setRequestProperty("User-Agent", "For an University-Project. benno.schaab@gmail.com");
 
         int status = con.getResponseCode();
         if (status != 200) {
