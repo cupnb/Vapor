@@ -25,6 +25,7 @@ public abstract class SubController implements ActionListener {
     }
 
     public void activate() {
+        view.setCursor(true);
         isActive = true;
         view.setForwardButton(next != null);
         view.setBackwardButton(previous != null);

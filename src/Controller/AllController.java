@@ -21,6 +21,7 @@ public class AllController extends SubController {
         super.activate();
         games = this.library.getAllGames();
         view.updateGrid(games, "All Games", "All Games that are currently in the Library", this);
+        view.setCursor(false);
     }
 
     public void actionPerformed(ActionEvent event) {

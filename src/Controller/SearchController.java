@@ -15,6 +15,7 @@ public class SearchController extends SubController {
 
     public SearchController(String query, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
+        view.setCursor(true);
         games = searchRequest(query);
         this.query = query;
         activate();
@@ -24,6 +25,7 @@ public class SearchController extends SubController {
     public void activate() {
         super.activate();
         view.updateGrid(games, query,"Up to " + AMOUNT_SEARCH + " games that have been found for the query: " + query, this);
+        view.setCursor(false);
     }
 
     public Game[] searchRequest(String query) {

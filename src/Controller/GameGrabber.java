@@ -41,13 +41,13 @@ public class GameGrabber extends Thread {
             for (i = 0; i < json_games.length; i++) {
                 grabbers[i] = new GameGrabber((int) json_games[i].getContent("id"), library);
                 grabbers[i].start();
-                System.out.println(String.format("Thread %d started", i));
+                System.out.println(String.format("Grabber %d started", i));
             }
 
             for (i = 0; i < json_games.length; i++) {
                 grabbers[i].join();
                 games[i] = grabbers[i].getResult();
-                System.out.println(String.format("Thread %d ended", i));
+                System.out.println(String.format("Grabber %d ended", i));
             }
             return games;
 

@@ -23,6 +23,7 @@ public class GenreController extends SubController {
         super.activate();
         games = this.library.getGamesFrom(genre);
         view.updateGrid(games, genre.getName(), genre.getDescription(), this);
+        view.setCursor(false);
     }
 
     public void actionPerformed(ActionEvent event) {

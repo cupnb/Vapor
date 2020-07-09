@@ -7,7 +7,6 @@ import Model.Rawg;
 import View.View;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class SimilarController extends SubController {
 
@@ -16,6 +15,7 @@ public class SimilarController extends SubController {
 
     public SimilarController(Game game, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
+        view.setCursor(true);
         games = similarRequest(game);
         gameName = game.getName();
         activate();
@@ -24,7 +24,8 @@ public class SimilarController extends SubController {
     @Override
     public void activate() {
         super.activate();
-        view.updateGrid(games, "Ähnliche Spiele: " + gameName, "Shows similar games to " + gameName, this);
+        view.updateGrid(games, "Similar Games: " + gameName, "Here are some similar games to " + gameName, this);
+        view.setCursor(false);
     }
 
     private Game[] similarRequest(Game game) {

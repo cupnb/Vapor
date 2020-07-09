@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 
 import com.formdev.flatlaf.*;
 
@@ -28,6 +27,7 @@ public class View extends JFrame implements WindowListener {
     private GridView gridView;
 
     final static private boolean useExternalFlatLaf = true;
+
 
 
 
@@ -64,7 +64,7 @@ public class View extends JFrame implements WindowListener {
             gamesViewScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
             loadPanel = new JPanel();
-            loadPanel.add(new JLabel("Lädt, bitte warten"));
+            loadPanel.add(new JLabel("Loading, please wait"));
 
 
             cardLayout.add(gamesViewScroll, "gameView");
@@ -100,14 +100,13 @@ public class View extends JFrame implements WindowListener {
         cl.show(cardLayout, "gridView");
     }
 
-    public static Dimension getScaledDimension(Dimension imageSize, Dimension boundary) {
-
-        double widthRatio = boundary.getWidth() / imageSize.getWidth();
-        double heightRatio = boundary.getHeight() / imageSize.getHeight();
-        double ratio = Math.min(widthRatio, heightRatio);
-
-        return new Dimension((int) (imageSize.width  * ratio),
-                (int) (imageSize.height * ratio));
+    public void setCursor(boolean isLoading) {
+        if (isLoading) {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        }
+        else {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }
 
     public String getSearchString(){

@@ -21,6 +21,7 @@ public class GameController extends SubController {
 
     public GameController(Game game, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
+        view.setCursor(true);
         this.game = game;
 
         int [] storeIds = game.getStores();
@@ -99,6 +100,7 @@ public class GameController extends SubController {
     public void activate() {
         super.activate();
         this.view.updateGame(gameInfo, image, game.getIsLocal(), this);
+        view.setCursor(false);
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -120,11 +122,13 @@ public class GameController extends SubController {
                     next = new PlatformController(platforms[index], this, controller, library, view);
                     break;
                 case "add":
+                    view.setCursor(true);
                     controller.addGame(game);
                     view.updateList(library.getAllGameNames());
                     activate();
                     break;
                 case "delete":
+                    view.setCursor(true);
                     controller.removeGame(game);
                     view.updateList(library.getAllGameNames());
                     activate();

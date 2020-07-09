@@ -23,6 +23,7 @@ public class TagController extends SubController{
         super.activate();
         games = this.library.getGamesFrom(tag);
         view.updateGrid(games, tag.getName(), tag.getDescription(), this);
+        view.setCursor(false);
     }
 
     public void actionPerformed(ActionEvent event) {
