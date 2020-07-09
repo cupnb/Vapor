@@ -29,21 +29,7 @@ public class SimilarController extends SubController {
         try {
             Json result = new Json(Rawg.similarRequest(game.getId()));
 
-            Object[] objects = (Object[]) result.getContent("results");
-
-            Json[] json_games = new Json[objects.length];
-            int i = 0;
-            for (Object o : objects){
-                json_games[i] = (Json) o;
-                i++;
-            }
-
-
-            Game[] games = new Game[json_games.length];
-            for(i = 0; i < json_games.length; i++) {
-                games[i] = library.getGame((int) json_games[i].getContent("id"));
-            }
-            return games;
+            return GameGrabber.buildGames(result, library);
 
         } catch (Exception e) {
             e.printStackTrace();
