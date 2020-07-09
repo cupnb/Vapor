@@ -95,8 +95,8 @@ public class View extends JFrame implements WindowListener {
         gamesViewScroll.getVerticalScrollBar().setValue(gamesViewScroll.getVerticalScrollBar().getMinimum());
     }
 
-    public void updateGrid(Game[] games, String title, SubController c){
-        gridView.updateGrid(games, title, c);
+    public void updateGrid(Game[] games, String title, String description, SubController c){
+        gridView.updateGrid(games, title, description, c);
         cl.show(cardLayout, "gridView");
     }
 
@@ -135,7 +135,7 @@ public class View extends JFrame implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
         DataIO.dumpTempData();
-        dispose();
+        System.exit(0);
     }
 
     @Override
