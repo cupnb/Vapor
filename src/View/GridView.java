@@ -60,13 +60,13 @@ public class GridView extends JPanel implements Scrollable {
         grid.removeAll();
         int i = 0;
         JButton j;
+        ImageIcon[] images = ImageScaler.scaleImages(games, -1, 100);
+
         for (Game g : games){
             j = new JButton(g.getName());
             BufferedImage pic = g.loadImage();
             if (pic != null){
-                Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(100, 100));
-                ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 100, Image.SCALE_FAST));
-                j.setIcon(image);
+                j.setIcon(images[i]);
             }
             j.setHorizontalAlignment(SwingConstants.LEFT);
             j.addActionListener(c);
