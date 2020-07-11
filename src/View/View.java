@@ -10,22 +10,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 
 import com.formdev.flatlaf.*;
 
 public class View extends JFrame implements WindowListener {
 
-    private JSplitPane panel;
-
-    private CardLayout cl;
-    private JPanel cardLayout;
-    private JPanel loadPanel;
-    private GamesList gamesList;
-    private JScrollPane gamesViewScroll;
-    private GameView gameView;
-    private JScrollPane gridViewScroll;
-    private GridView gridView;
+    private final CardLayout cl;
+    private final JPanel cardLayout;
+    private final GamesList gamesList;
+    private final JScrollPane gamesViewScroll;
+    private final GameView gameView;
+    private final GridView gridView;
 
     final static private boolean useExternalFlatLaf = true;
 
@@ -33,6 +28,10 @@ public class View extends JFrame implements WindowListener {
 
     public View(Controller controller) {
             super("VAPOR");
+
+            JScrollPane gridViewScroll;
+            JPanel loadPanel;
+            JSplitPane panel;
 
             addWindowListener(this);
 
@@ -49,7 +48,6 @@ public class View extends JFrame implements WindowListener {
 
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             setSize(1600, 900);
-            //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
 
             cl = new CardLayout();
@@ -98,16 +96,6 @@ public class View extends JFrame implements WindowListener {
     public void updateGrid(Game[] games, String title, String description, SubController c){
         gridView.updateGrid(games, title, description, c);
         cl.show(cardLayout, "gridView");
-    }
-
-    public static Dimension getScaledDimension(Dimension imageSize, Dimension boundary) {
-
-        double widthRatio = boundary.getWidth() / imageSize.getWidth();
-        double heightRatio = boundary.getHeight() / imageSize.getHeight();
-        double ratio = Math.min(widthRatio, heightRatio);
-
-        return new Dimension((int) (imageSize.width  * ratio),
-                (int) (imageSize.height * ratio));
     }
 
     public String getSearchString(){

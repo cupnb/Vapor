@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 
 public class GridView extends JPanel implements Scrollable {
 
-    private JPanel grid;
-    private JLabel label;
-    private JTextPane description;
+    private final JPanel grid;
+    private final JLabel label;
+    private final JTextPane description;
 
     public GridView(){
         setLayout(new GridBagLayout());
@@ -64,7 +64,6 @@ public class GridView extends JPanel implements Scrollable {
             j = new JButton(g.getName());
             BufferedImage pic = g.loadImage();
             if (pic != null){
-                Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(100, 100));
                 ImageIcon image = new ImageIcon(pic.getScaledInstance(-1, 100, Image.SCALE_FAST));
                 j.setIcon(image);
             }

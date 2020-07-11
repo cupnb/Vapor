@@ -4,36 +4,34 @@ import Controller.SubController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-public class GameView extends JPanel implements Scrollable{
+public class GameView extends JPanel implements Scrollable {
 
-    private JPanel titleImagePanel;
-    private JLabel titleImage;
-    private JPanel titlePanel;
-    private JLabel title;
-    private JLabel release;
-    private JPanel buttonPanel;
-    private JButton addDelButton;
-    private JButton sugButton;
-
-    private JTextPane description;
-    private JLabel rating;
-    private JLabel metacritic;
-
-    private JPanel table;
-    private JScrollPane tablePanel;
-    private JPanel platforms;
-    private JPanel genres;
-    private JPanel tags;
-    private JPanel stores;
+    private final JLabel titleImage;
+    private final JLabel title;
+    private final JLabel release;
+    private final JButton addDelButton;
+    private final JButton sugButton;
+    private final JTextPane description;
+    private final JLabel rating;
+    private final JLabel metacritic;
+    private final JPanel platforms;
+    private final JPanel genres;
+    private final JPanel tags;
+    private final JPanel stores;
 
 
 
     public GameView() {
-        //setPreferredSize(new Dimension(900, 600));
+        JPanel titleImagePanel;
+        JPanel titlePanel;
+        JPanel buttonPanel;
+        JPanel table;
+
         setLayout(new GridBagLayout());
 
+
+        //Titelbild
         titleImagePanel = new JPanel();
         titleImage = new JLabel();
         titleImagePanel.add(titleImage);
@@ -41,7 +39,6 @@ public class GameView extends JPanel implements Scrollable{
         titleImagePanel.setMaximumSize(new Dimension(600, 300));
         titleImagePanel.setPreferredSize(new Dimension(600, 300));
 
-        //titleImagePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 
         titlePanel = new JPanel(new GridLayout(0, 1));
@@ -53,7 +50,6 @@ public class GameView extends JPanel implements Scrollable{
 
         titlePanel.add(title);
         titlePanel.add(release);
-        //titlePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         buttonPanel = new JPanel();
         addDelButton = new JButton("");
@@ -62,15 +58,9 @@ public class GameView extends JPanel implements Scrollable{
 
         buttonPanel.add(addDelButton);
         buttonPanel.add(sugButton);
-        //buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         description  = new JTextPane();
         description.setContentType("text/html");
-        //description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        tablePanel = new JScrollPane();
-        table = new JPanel(new GridBagLayout());
-        //table.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         rating = new JLabel("", SwingConstants.LEFT);
         metacritic = new JLabel("", SwingConstants.LEFT);
@@ -79,13 +69,8 @@ public class GameView extends JPanel implements Scrollable{
         platforms = new JPanel(new GridLayout(0, 5));
         stores = new JPanel(new GridLayout(0, 5));
 
-
-        setupTable();
-
-
-        /*GridBagConstraints titleConstraints = new GridBagConstraints();
-        titleConstraints.fill = GridBagConstraints.NONE ;
-        add(titleImage, titleConstraints);*/
+        table = new JPanel(new GridBagLayout());
+        table = setupTable(table);
 
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -100,7 +85,6 @@ public class GameView extends JPanel implements Scrollable{
         constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.weightx = 1.0;
-        //titleConstraints.weighty = 1.0;
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         add(titlePanel, constraints);
@@ -227,7 +211,7 @@ public class GameView extends JPanel implements Scrollable{
         }
     }
 
-    private void setupTable(){
+    private JPanel setupTable(JPanel table){
         GridBagConstraints tableConstraints = new GridBagConstraints();
         tableConstraints.gridx = 0;
         tableConstraints.gridy = 0;
@@ -277,6 +261,8 @@ public class GameView extends JPanel implements Scrollable{
         tableConstraints.gridx = 1;
         tableConstraints.gridy = 5;
         table.add(stores, tableConstraints);
+
+        return table;
     }
 
     @Override

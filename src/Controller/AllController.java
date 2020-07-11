@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Game;
-import Model.Genre;
 import Model.Library;
 import View.View;
 

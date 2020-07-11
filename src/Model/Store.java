@@ -1,8 +1,8 @@
 package Model;
 
 public class Store extends LibraryObject{
-    int gamesCount;
-    String domain;
+    private int gamesCount;
+    private String domain;
 
     public Store(int id) {
         try {

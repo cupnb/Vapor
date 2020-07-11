@@ -1,59 +1,54 @@
 package View;
 
 import Controller.Controller;
-import Model.DataIO;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class GamesList extends JSplitPane{
 
-    private JPanel buttonPanel;
-    private JButton back;
-    private JButton forward;
+    private final JButton back;
+    private final JButton forward;
     private final static ImageIcon backIcon = new ImageIcon(View.class.getResource("/ImageFiles/back.png"));
     private final static ImageIcon forwardIcon = new ImageIcon(View.class.getResource("/ImageFiles/forward.png"));
     private final static ImageIcon homeIcon = new ImageIcon(View.class.getResource("/ImageFiles/home.png"));
 
-    private JPanel listPanel;
-    private JList<String> list;
-    private JScrollPane jScrollPane;
-
-    private JPanel searchPane;
-    private HintTextField textField;
-    private JButton search;
+    private final JList<String> list;
+    private final HintTextField textField;
 
     public GamesList(Controller c){
-
         super(JSplitPane.VERTICAL_SPLIT);
+
+        JPanel buttonPanel;
+        JButton allGames;
+
+        JPanel listPanel;
+        JScrollPane jScrollPane;
+
+        JPanel searchPane;
+        JButton search;
+
         setEnabled(false);
         setResizeWeight(1.0);
 
-        listPanel = new JPanel();
-        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
-
+        //Navigation
         back = new JButton(backIcon);
         forward = new JButton(forwardIcon);
-        JButton allGames = new JButton(homeIcon);
+        allGames = new JButton(homeIcon);
 
         back.addActionListener(c);
         forward.addActionListener(c);
         allGames.addActionListener(c);
-
         back.setActionCommand("back");
         forward.setActionCommand("forward");
         allGames.setActionCommand("allGames");
-        buttonPanel = new JPanel();
 
+        buttonPanel = new JPanel();
         buttonPanel.add(back);
         buttonPanel.add(forward);
         buttonPanel.add(allGames);
 
-        listPanel.add(buttonPanel);
-
-
-
+        //Setup JList
         list = new JList<>();
         list.setLayoutOrientation(JList.VERTICAL);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -62,34 +57,35 @@ public class GamesList extends JSplitPane{
 
         jScrollPane = new JScrollPane(list);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
         jScrollPane.setPreferredSize(new Dimension(300, 10000));
+
+        //Setup upper panel
+        listPanel = new JPanel();
+        listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.PAGE_AXIS));
+        listPanel.add(buttonPanel);
         listPanel.add(jScrollPane);
 
-        add(listPanel);
-
-        searchPane = new JPanel();
+        //Setup lower panel
         textField = new HintTextField("Spielesuche");
         textField.setPreferredSize(new Dimension(300, 30));
         textField.setMaximumSize(new Dimension(300, 30));
         textField.setMinimumSize(new Dimension(300, 30));
 
-        searchPane.setSize(500, 50);
-
         search = new JButton("Search");
         search.addActionListener(c);
 
+        searchPane = new JPanel();
+        searchPane.setSize(500, 50);
         searchPane.add(textField);
         searchPane.add(search);
 
 
+        add(listPanel);
         add(searchPane);
     }
 
     public void updateGames(String[] games){
         list.setListData(games);
-        //setDividerLocation(this.getSize().height - 20);
-
     }
 
     public String getSelectionName(int index){
