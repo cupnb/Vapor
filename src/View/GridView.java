@@ -13,6 +13,9 @@ public class GridView extends JPanel implements Scrollable {
     private final JLabel label;
     private final JTextPane description;
 
+    /**
+     * Constructs the gridview panel
+     */
     public GridView(){
         setLayout(new GridBagLayout());
 
@@ -54,6 +57,13 @@ public class GridView extends JPanel implements Scrollable {
         add(description, constraints);
     }
 
+    /**
+     * Updates the gridview
+     * @param games Array of games to be shown in the grid
+     * @param title Title of the content shown
+     * @param description Description of the content shown
+     * @param c Subcontroller that acts as the ActionListener for the buttons
+     */
     public void updateGrid(Game[] games, String title, String description, SubController c){
         label.setText(title);
         this.description.setText(description);

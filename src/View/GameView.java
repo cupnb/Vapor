@@ -21,7 +21,9 @@ public class GameView extends JPanel implements Scrollable {
     private final JPanel stores;
 
 
-
+    /**
+     * Constructs the gameview panel
+     */
     public GameView() {
         JPanel titleImagePanel;
         JPanel titlePanel;
@@ -131,6 +133,13 @@ public class GameView extends JPanel implements Scrollable {
 
     }
 
+    /**
+     * Updates the gameview
+     * @param gameInfo Info about the game to be displayed, separated by ':'
+     * @param image The image for the game
+     * @param inLibrary Boolean to determine the status of the addDelButton
+     * @param c Subcontroller used as ActionListener
+     */
     public void updateGame(String [] gameInfo, ImageIcon image, Boolean inLibrary, SubController c) {
         title.setText(gameInfo[0]);
         release.setText(gameInfo[1]);

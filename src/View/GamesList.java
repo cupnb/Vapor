@@ -16,6 +16,10 @@ public class GamesList extends JSplitPane{
     private final JList<String> list;
     private final HintTextField textField;
 
+    /**
+     * Constructs the gamelist
+     * @param c Controller used as the ActionListener
+     */
     public GamesList(Controller c){
         super(JSplitPane.VERTICAL_SPLIT);
 
@@ -84,22 +88,43 @@ public class GamesList extends JSplitPane{
         add(searchPane);
     }
 
+    /**
+     * Updates the gamelist
+     * @param games Names of all the games
+     */
     public void updateGames(String[] games){
         list.setListData(games);
     }
 
+    /**
+     * Get the name of the selected gamelist entry
+     * @param index Index of the list entry
+     * @return The name of the list entry
+     */
     public String getSelectionName(int index){
         return list.getSelectedValue();
     }
 
+    /**
+     * Gets the String in the search bar
+     * @return String to search for
+     */
     public String getSearchString(){
         return textField.getText();
     }
 
+    /**
+     * Activates / deactivates the forward button
+     * @param b boolean to determine the status
+     */
     public void setForwardButton(boolean b){
         forward.setEnabled(b);
     }
 
+    /**
+     * Activates / deactivates the back button
+     * @param b boolean to determine the status
+     */
     public void setBackwardButton(boolean b){
         back.setEnabled(b);
     }
