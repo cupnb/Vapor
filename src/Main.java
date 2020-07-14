@@ -10,14 +10,4 @@ public class Main {
         test();
     }
 
-    private static void test() {
-        System.out.println(System.nanoTime());
-        try {
-            Controller controller = new Controller();
-        }
-        catch (Exception e) {
-            System.out.println("ERROR");
-            System.out.println(e.getMessage());
-        }
-    }
 }
