@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Game;
-import Model.Genre;
 import Model.Library;
 import View.View;
 
@@ -9,7 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class AllController extends SubController {
 
-    Game[] games;
+    private Game[] games;
 
     public AllController(SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
@@ -24,6 +23,11 @@ public class AllController extends SubController {
         view.setCursor(false);
     }
 
+
+    /**
+     * Creates a new GameController to show the Game that's been clicked on
+     * @param event actionCommand: index (in List "games" in GridView`s updateGrid) of the selected Game
+     */
     public void actionPerformed(ActionEvent event) {
         try {
             int index = Integer.parseInt(event.getActionCommand());

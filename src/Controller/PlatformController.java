@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 
 public class PlatformController extends SubController {
 
-    Game[] games;
-    Platform platform;
+    private Game[] games;
+    private final Platform platform;
 
     public PlatformController(Platform platform, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
@@ -26,6 +26,10 @@ public class PlatformController extends SubController {
         view.setCursor(false);
     }
 
+    /**
+     * Creates a new GameController to show the Game that's been clicked on
+     * @param event actionCommand: index (in List "games" in GridView`s updateGrid) of the selected Game
+     */
     public void actionPerformed(ActionEvent event) {
         try {
             int index = Integer.parseInt(event.getActionCommand());

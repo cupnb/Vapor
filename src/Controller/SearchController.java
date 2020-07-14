@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class SearchController extends SubController {
 
-    Game[] games;
+    private final Game[] games;
 
     private final String query;
     private final static int AMOUNT_SEARCH = 10;
@@ -28,7 +28,7 @@ public class SearchController extends SubController {
         view.setCursor(false);
     }
 
-    public Game[] searchRequest(String query) {
+    private Game[] searchRequest(String query) {
         try {
             Json result = new Json(Rawg.searchRequest(AMOUNT_SEARCH, query));
 
@@ -41,7 +41,10 @@ public class SearchController extends SubController {
         }
     }
 
-
+    /**
+     * Creates a new GameController to show the Game that's been clicked on
+     * @param event actionCommand: index (in List "games" in GridView`s updateGrid) of the selected Game
+     */
     public void actionPerformed(ActionEvent event) {
         try {
             int index = Integer.parseInt(event.getActionCommand());

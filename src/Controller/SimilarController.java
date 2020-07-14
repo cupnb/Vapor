@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 
 public class SimilarController extends SubController {
 
-    Game[] games;
-    String gameName;
+    private final Game[] games;
+    private final String gameName;
 
     public SimilarController(Game game, SubController previous, Controller controller, Library library, View view) {
         super(previous, controller, library, view);
@@ -40,6 +40,10 @@ public class SimilarController extends SubController {
         return null;
     }
 
+    /**
+     * Creates a new GameController to show the Game that's been clicked on
+     * @param event actionCommand: index (in List "games" in GridView`s updateGrid) of the selected Game
+     */
     public void actionPerformed(ActionEvent event) {
         try {
             int index = Integer.parseInt(event.getActionCommand());
