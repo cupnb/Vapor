@@ -62,12 +62,11 @@ public class GameController extends SubController {
 
 
         BufferedImage pic = game.loadImage();
-        //Dimension d = View.getScaledDimension(new Dimension(pic.getWidth(), pic.getHeight()), new Dimension(2000, 500));
         image = new ImageIcon(pic.getScaledInstance(-1, 300, Image.SCALE_SMOOTH));
 
         gameInfo[2] = game.getDescription();
 
-        gameInfo[3] = ((Double)game.getRating()).toString();
+        gameInfo[3] = ((Double)game.getRating()).toString() + " / 10";
         gameInfo[4] = ((Integer)game.getMetacritic()).toString();
 
         String genresString = "";

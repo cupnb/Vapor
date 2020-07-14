@@ -14,8 +14,6 @@ public class Game extends LibraryObject{
     double rating;
     int metacritic;
 
-    String[] screenshots;
-
     boolean isLocal;
 
     public Game(int id) {
@@ -78,7 +76,7 @@ public class Game extends LibraryObject{
 
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
     }
 

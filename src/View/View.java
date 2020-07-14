@@ -15,24 +15,26 @@ import com.formdev.flatlaf.*;
 
 public class View extends JFrame implements WindowListener {
 
-    private JSplitPane panel;
-
-    private CardLayout cl;
-    private JPanel cardLayout;
-    private JPanel loadPanel;
-    private GamesList gamesList;
-    private JScrollPane gamesViewScroll;
-    private GameView gameView;
-    private JScrollPane gridViewScroll;
-    private GridView gridView;
+    private final CardLayout cl;
+    private final JPanel cardLayout;
+    private final GamesList gamesList;
+    private final JScrollPane gamesViewScroll;
+    private final GameView gameView;
+    private final GridView gridView;
 
     final static private boolean useExternalFlatLaf = true;
 
 
-
-
+    /**
+     * Constructs a new JFrame and provides control over the gui
+     * @param controller used as ActionListener
+     */
     public View(Controller controller) {
             super("VAPOR");
+
+            JScrollPane gridViewScroll;
+            JPanel loadPanel;
+            JSplitPane panel;
 
             addWindowListener(this);
 
@@ -49,7 +51,6 @@ public class View extends JFrame implements WindowListener {
 
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             setSize(1600, 900);
-            //setMinimumSize(new Dimension(1600, 900));
             setResizable(true);
 
             cl = new CardLayout();
@@ -81,24 +82,48 @@ public class View extends JFrame implements WindowListener {
 
     }
 
+    /**
+     * Get the name of the selected gamelist entry
+     * @param index Index of the list entry
+     * @return The name of the list entry
+     */
     public String getListString(int index){
         return gamesList.getSelectionName(index);
     }
 
+    /**
+     * Updates the gamelist
+     * @param games Names of all the games
+     */
     public void updateList(String[] games){
         gamesList.updateGames(games);
     }
 
-    public void updateGame(String[] gameInfo, ImageIcon image, boolean isLocal, SubController c){
-        gameView.updateGame(gameInfo, image, isLocal, c);
+    /**
+     * Updates the gameview
+     * @param gameInfo Info about the game to be displayed, separated by ':'
+     * @param image The image for the game
+     * @param inLibrary Boolean to determine the status of the addDelButton
+     * @param c Subcontroller used as ActionListener
+     */
+    public void updateGame(String[] gameInfo, ImageIcon image, boolean inLibrary, SubController c){
+        gameView.updateGame(gameInfo, image, inLibrary, c);
         cl.show(cardLayout, "gameView");
         gamesViewScroll.getVerticalScrollBar().setValue(gamesViewScroll.getVerticalScrollBar().getMinimum());
     }
 
+    /**
+     * Updates the gridview
+     * @param games Array of games to be shown in the grid
+     * @param title Title of the content shown
+     * @param description Description of the content shown
+     * @param c Subcontroller that acts as the ActionListener for the buttons
+     */
     public void updateGrid(Game[] games, String title, String description, SubController c){
         gridView.updateGrid(games, title, description, c);
         cl.show(cardLayout, "gridView");
     }
+
 
     public void setCursor(boolean isLoading) {
         if (isLoading) {
@@ -109,18 +134,33 @@ public class View extends JFrame implements WindowListener {
         }
     }
 
+    /**
+     * Gets the String in the search bar
+     * @return String to search for
+     */
     public String getSearchString(){
         return gamesList.getSearchString();
     }
 
+    /**
+     * Shows the loading screen
+     */
     public void setLoad(){
         cl.show(cardLayout, "loadPanel");
     }
 
+    /**
+     * Activates / deactivates the forward button
+     * @param b boolean to determine the status
+     */
     public void setForwardButton(boolean b){
         gamesList.setForwardButton(b);
     }
 
+    /**
+     * Activates / deactivates the back button
+     * @param b boolean to determine the status
+     */
     public void setBackwardButton(boolean b){
         gamesList.setBackwardButton(b);
     }

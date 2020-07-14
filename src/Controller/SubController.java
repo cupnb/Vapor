@@ -7,12 +7,12 @@ import View.View;
 import java.awt.event.ActionListener;
 
 public abstract class SubController implements ActionListener {
-    Controller controller;
-    Library library;
-    View view;
-    SubController next;
-    SubController previous;
-    boolean isActive;
+    protected final Controller controller;
+    protected final Library library;
+    protected final View view;
+    protected SubController next;
+    protected SubController previous;
+    protected boolean isActive;
 
     private static final int maxControllers = 10;
 

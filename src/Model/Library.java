@@ -1,8 +1,6 @@
 package Model;
 
-import java.io.File;
 import java.io.Serializable;
-import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,7 +12,7 @@ public class Library implements Serializable {
     ArrayList<Tag> tags;
 
 
-    public Library() throws FileSystemException {
+    public Library() {
         games = new ArrayList<>();
         stores = new ArrayList<>();
         platforms = new ArrayList<>();
