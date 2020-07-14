@@ -7,6 +7,7 @@ import Model.Rawg;
 import View.View;
 
 import java.awt.event.ActionEvent;
+import java.util.SimpleTimeZone;
 
 public class SimilarController extends SubController {
 
@@ -29,13 +30,18 @@ public class SimilarController extends SubController {
     }
 
     private Game[] similarRequest(Game game) {
+        Json result = null;
         try {
-            Json result = new Json(Rawg.similarRequest(game.getId()));
-
-            return GameGrabber.buildGames(result, library);
+            result = new Json(Rawg.similarRequest(game.getId()));
 
         } catch (Exception e) {
             view.conError();
+            System.exit(1);
+        }
+        try {
+            return GameGrabber.buildGames(result, library);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
