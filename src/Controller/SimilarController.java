@@ -35,7 +35,7 @@ public class SimilarController extends SubController {
             return GameGrabber.buildGames(result, library);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            view.conError();
         }
         return null;
     }
