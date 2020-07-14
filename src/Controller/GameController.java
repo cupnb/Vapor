@@ -102,6 +102,13 @@ public class GameController extends SubController {
         view.setCursor(false);
     }
 
+    /**
+     * Handles following User input:
+     * - One of the Game properties was pressed
+     * - Add or Delete Button was pressed
+     * - The Similar Games Button was pressed
+     * @param event ActionEvent of form: [type of button]:[which one exactly] Example: "Tag:3"
+     */
     public void actionPerformed(ActionEvent event) {
         try {
             String[] action = event.getActionCommand().split(":");

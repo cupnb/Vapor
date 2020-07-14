@@ -5,7 +5,12 @@ import java.util.Map;
 import java.util.LinkedList;
 
 public class Json {
-    public Map<String, Object> content;
+    private final Map<String, Object> content;
+
+    /**
+     * Tries to parse the String as a Json.
+     * @param str String that`s to be parsed
+     */
     public Json(String str) {
        content = new HashMap<>();
        getElements(str.substring(1, getSubJson(str, 0)).replace("\\n", ""));
@@ -13,7 +18,7 @@ public class Json {
 
 
     private void getElements(String str) throws IllegalArgumentException {
-        if (str.equals("") || str.equals(" ")) {
+        if (str.equals("") || str.equals(" ")) { //Is the Json empty?
             return;
         }
         String current_key;
@@ -21,20 +26,21 @@ public class Json {
         int s = 0;
         int e;
         while(true) {
-            verifyChar(str, s, '"');
-            e = getSubString(str, s);
-            current_key = str.substring(s + 1, e);
-            verifyChar(str, e + 1, ':');
-            Object[] res = getValue(str, e + 2);
-            current_value = res[0];
-            s = (int) res[1] + 1;
+            //"KEY":VALUE
+            verifyChar(str, s, '"'); //Key needs to be a String
+            e = getSubString(str, s); //This is the current Key
+            current_key = str.substring(s + 1, e); //Remove "
+            verifyChar(str, e + 1, ':'); //Key and Value is separated by ':'
+            Object[] res = getValue(str, e + 2); //Get the Value
+            current_value = res[0]; //This is the current  Value
+            s = (int) res[1] + 1; //The index where the Value ended
             content.put(current_key, current_value);
 
             if(s == str.length()) {
                 break;
             }
             else {
-                verifyChar(str, s, ',');
+                verifyChar(str, s, ','); //Key-Value pairs need to be separated by ','
             }
             s++;
         }
@@ -45,41 +51,41 @@ public class Json {
         verifyIndex(str, start_index);
         Object[] res = new Object[2];
         int end_index;
-        switch (str.charAt(start_index)) {
-            case '"':
+        switch (str.charAt(start_index)) { //First char of the Value
+            case '"': //Its a String
                 end_index = getSubString(str, start_index);
                 res[0] = str.substring(start_index + 1, end_index);
                 res[1] = end_index;
                 return res;
 
-            case '{':
+            case '{': //Its a Json
                 end_index = getSubJson(str, start_index);
                 res[0] = new Json(str.substring(start_index, end_index + 1));
                 res[1] = end_index;
                 return res;
 
-            case '[':
+            case '[': //Its a List
                 Object[] list_res = getList(str, start_index);
                 res[0] = list_res[0];
                 res[1] = list_res[1];
                 return res;
 
-            case 't':
+            case 't': //Its 'true'
                 res[0] = true;
                 res[1] = start_index + 3;
                 return res;
 
-            case 'f':
+            case 'f': //Its 'false'
                 res[0] = false;
                 res[1] = start_index + 4;
                 return res;
 
-            case 'n':
+            case 'n': //Its 'null'
                 res[0] = null;
                 res[1] = start_index + 3;
                 return res;
 
-            default:
+            default: //Has to be a Number then (at least i hope so)
                 Object[] num_res = getNumber(str, start_index);
                 res[0] = num_res[0];
                 res[1] = num_res[1];
@@ -93,32 +99,32 @@ public class Json {
         int e;
         LinkedList<Object> result = new LinkedList<>();
 
-        loop: while (true) {
+        loop: while (true) { //Go through every entry in the List
             verifyIndex(str, s);
-            switch (str.charAt(s)) {
-                case '"':
+            switch (str.charAt(s)) { //First Char of the current entry
+                case '"': //Its a String
                     e = getSubString(str, s);
                     result.add(str.substring(s + 1, e));
                     s = e + 1;
                     break;
 
-                case '{':
+                case '{': //Its a Json
                     e = getSubJson(str, s);
                     result.add(new Json(str.substring(s, e + 1)));
                     s = e + 1;
                     break;
 
-                case '[':
+                case '[': //Its another List
                     Object[] list_res = getList(str, s);
                     e = (int) list_res[1];
                     result.add(list_res[0]);
                     s = e + 1;
                     break;
 
-                case ']':
+                case ']': //There are no more entries in the List so we are done
                     break loop;
 
-                default:
+                default: //Its a Number
                     Object[] num_res = getNumber(str, s);
                     e = (int) num_res[1];
                     result.add(num_res[0]);
@@ -127,10 +133,10 @@ public class Json {
             }
             verifyIndex(str, s);
             char ch = str.charAt(s);
-            if(ch == ']') {
+            if(ch == ']') { //There are no more entries in the List so we are done
                 break;
             }
-            else if(ch != ',') {
+            else if(ch != ',') { //List elements need to be separated by ','
                 throw new IllegalArgumentException("Expected ',' or ']'");
             }
             s++;
@@ -146,7 +152,7 @@ public class Json {
     private Object[] getNumber(String str, int startIndex) {
         int endIndex = startIndex;
         Object[] res = new Object[2];
-        while (true) {
+        while (true) { //Find the end of the Number
             if(endIndex == str.length()) {
                 break;
             }
@@ -160,9 +166,9 @@ public class Json {
         res[1] = endIndex;
         String subString = str.substring(startIndex, endIndex + 1);
         try {
-            if (subString.contains(".")) {
+            if (subString.contains(".")) { //Its a decimal Number
                 res[0] = Double.parseDouble(subString);
-            } else {
+            } else { //Its an Integer
                 res[0] = Integer.parseInt(subString);
             }
         }

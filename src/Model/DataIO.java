@@ -10,14 +10,22 @@ public abstract class DataIO {
     final static private String libraryPath = "library";
     final static private String resourcePath = "resources/";
 
-
+    /**
+     * Saves the whole Library as a File.
+     * @param library The Library to be saved
+     * @throws IOException Thrown if the saving process failed.
+     */
     public static void saveLibrary(Library library) throws IOException {
         FileOutputStream file = new FileOutputStream(resourcePath + libraryPath);
         ObjectOutputStream objOut = new ObjectOutputStream(file);
         objOut.writeObject(library);
     }
 
-    public static Library loadLibrary() throws FileSystemException {
+    /**
+     * Loads the Library. If no Library exists or the loading process failed a new one will be created.
+     * @return The loaded or created Library
+     */
+    public static Library loadLibrary() {
         try {
             if (!new File(resourcePath + libraryPath).exists()) {
                 deleteAllResources();
@@ -34,7 +42,10 @@ public abstract class DataIO {
         }
     }
 
-
+    /**
+     * Creates the necessary Folder-System in which images will be stored.
+     * @throws FileSystemException Thrown if a Folder could not be created. This Error is fatal.
+     */
     public static void initFolders() throws FileSystemException {
         String[] paths = {"", "temp/", "image/", "image/game/", "image/genre/", "image/platform/",
                 "image/store/", "image/tag/"};
@@ -49,6 +60,9 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Deletes all saved Images.
+     */
     public static void deleteAllResources() {
         String[] paths = {"temp/", "image/game/", "image/genre/", "image/platform/",
                 "image/store/", "image/tag/"};
@@ -69,6 +83,9 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Deletes all temporarily saved Images.
+     */
     public static void dumpTempData() {
         File[] files = new File(resourcePath + "temp/").listFiles();
         if (files == null) {
@@ -90,6 +107,12 @@ public abstract class DataIO {
         return ImageIO.read(url);
     }
 
+    /**
+     * Downloads a Image and saves it temporarily
+     * @param id Rawg id of the Object
+     * @param classString Type of the Object
+     * @param url_string url of the image
+     */
     public static void storeTempImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
             return;
@@ -102,6 +125,13 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Copies the temporary Image to the permanent Folder. Tries to download the temporary image if its missing.
+     * @param id Rawg id of the Object
+     * @param classString Type of the Object
+     * @param url_string url of the image
+     * @return success
+     */
     public static boolean storePermImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
             return false;
@@ -124,6 +154,13 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Loads a temporary Image. Tries to download the image if its missing.
+     * @param id Rawg id of the Object
+     * @param classString Type of the Object
+     * @param url_string url of the image
+     * @return The requested Image or the noImage if something goes wrong
+     */
     public static BufferedImage loadTempImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
             return loadNoImage();
@@ -142,6 +179,13 @@ public abstract class DataIO {
 
     }
 
+    /**
+     * Loads a permanent Image. Tries to download the image if its missing.
+     * @param id Rawg id of the Object
+     * @param classString Type of the Object
+     * @param url_string url of the image
+     * @return The requested Image or the noImage if something goes wrong
+     */
     public static BufferedImage loadPermImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
             return loadNoImage();
@@ -160,6 +204,11 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Deletes a permanent Image.
+     * @param id Rawg id of the Object
+     * @param classString Type of the Object
+     */
     public static void deleteImage(int id, String classString) {
         File source = new File(String.format("%s/image/%s/%d.jpg", resourcePath, classString, id));
         try {
@@ -170,6 +219,10 @@ public abstract class DataIO {
         }
     }
 
+    /**
+     * Loads the noImage. Returns null if this for some reason goes wrong though this could lead to unexpected behavior.
+     * @return noImage
+     */
     private static BufferedImage loadNoImage() {
         try {
             return ImageIO.read(DataIO.class.getResource("/ImageFiles/noImage.png"));

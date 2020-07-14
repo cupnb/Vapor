@@ -85,7 +85,9 @@ public class Game extends LibraryObject{
         return o.getId() == id;
     }
 
-    public LocalDate getRelease() {return release;}
+    public LocalDate getRelease() {
+        return release;
+    }
 
     public int[] getPlatforms() {
         return platforms;
@@ -111,10 +113,17 @@ public class Game extends LibraryObject{
         return metacritic;
     }
 
+    /**
+     * Sets the isLocal parameter.
+     * @param bool Is the Game saved in the Library
+     */
     public void setIsLocal(boolean bool) {
         isLocal = bool;
     }
 
+    /**
+     * @return Whether the Game is saved in the Library
+     */
     public boolean getIsLocal() {
         return isLocal;
     }

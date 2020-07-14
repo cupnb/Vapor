@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.nio.file.FileSystemException;
 
 public class Controller implements ActionListener, ListSelectionListener {
-    final static private String libraryPath = "resources/library";
 
     private final View view;
     public final Library library;
@@ -19,19 +18,17 @@ public class Controller implements ActionListener, ListSelectionListener {
 
 
     public Controller() throws FileSystemException {
-
         view = new View(this);
-
         DataIO.initFolders();
-
         library = DataIO.loadLibrary();
-
         view.updateList(library.getAllGameNames());
-
         rootController = new AllController(null, this, library, view);
     }
 
-
+    /**
+     * Adds a Game to the Library, updates the GameList and saves the Library.
+     * @param game The Game to be added
+     */
     public void addGame(Game game) {
         if (library.addGame(game)) {
             try {
@@ -44,7 +41,10 @@ public class Controller implements ActionListener, ListSelectionListener {
         }
     }
 
-
+    /**
+     * Removes a Game from the Library, updates the GameList and saves the Library.
+     * @param game The Game to be removed
+     */
     public void removeGame(Game game) {
         if (library.removeGame(game)) {
             try {
@@ -57,13 +57,23 @@ public class Controller implements ActionListener, ListSelectionListener {
         }
     }
 
-
+    /**
+     * Overrides the Root-SubController.
+     * @param controller The new Root
+     */
     public void setRootController(SubController controller) {
         rootController = controller;
     }
 
 
-
+    /**
+     * Handles following User input:
+     * - Search button was pressed
+     * - Home button was pressed
+     * - Back button was pressed
+     * - Forward button was pressed
+     * @param e ActionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -88,6 +98,11 @@ public class Controller implements ActionListener, ListSelectionListener {
 
     }
 
+    /**
+     * Handles following User input:
+     * - Game in the GameList was selected
+     * @param e ListSelectionEvent
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()){

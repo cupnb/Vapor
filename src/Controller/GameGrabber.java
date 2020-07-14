@@ -20,10 +20,19 @@ public class GameGrabber extends Thread {
         game = library.getGame(id);
     }
 
+    /**
+     * @return finished Game
+     */
     public Game getResult() {
         return game;
     }
 
+    /**
+     * Creates all Games listed in the Json. Uses multithreading for ultimate speed.
+     * @param json  Result of the Rawg-Request
+     * @param library reference to the Library
+     * @return Array of finished Games
+     */
     public static Game[] buildGames(Json json, Library library) {
         try {
             Object[] objects = (Object[]) json.getContent("results");

@@ -14,6 +14,8 @@ public abstract class SubController implements ActionListener {
     protected SubController previous;
     protected boolean isActive;
 
+    /** Maximum amount of SubControllers
+     */
     private static final int maxControllers = 10;
 
     public SubController(SubController previous, Controller controller, Library library, View view) {
@@ -24,6 +26,10 @@ public abstract class SubController implements ActionListener {
         cutControllerStack(maxControllers);
     }
 
+    /**
+     * Activated SubControllers will show up in Main Window.
+     * Only one SubController can be active at the same time.
+     */
     public void activate() {
         view.setCursor(true);
         isActive = true;
@@ -31,6 +37,9 @@ public abstract class SubController implements ActionListener {
         view.setBackwardButton(previous != null);
     }
 
+    /**
+     * Activates the Successor of the active SubController (recursive)
+     */
     public void activateNext() {
         if (isActive) {
             if (next != null) {
@@ -45,6 +54,9 @@ public abstract class SubController implements ActionListener {
         }
     }
 
+    /**
+     * Activates the Predecessor of the active SubController (recursive)
+     */
     public void activatePrevious() {
         if (isActive) {
             if (previous != null) {
@@ -59,6 +71,10 @@ public abstract class SubController implements ActionListener {
         }
     }
 
+    /**
+     * Adds a new GameController as Successor of the active SubController and activates it. (recursive)
+     * @param game The Game to be shown
+     */
     public void addGameCon(Game game) {
         if (isActive) {
             isActive = false;
@@ -69,6 +85,10 @@ public abstract class SubController implements ActionListener {
         }
     }
 
+    /**
+     * Adds a new SearchController as Successor of the active SubController and activates it. (recursive)
+     * @param query The String to be searched for
+     */
     public void addSearchCon(String query) {
         if (isActive) {
             isActive = false;
@@ -79,17 +99,9 @@ public abstract class SubController implements ActionListener {
         }
     }
 
-    public void cutControllerStack(int remaining) {
-        System.out.println(remaining);
-        if (remaining <= 0) {
-            previous = null;
-            controller.setRootController(this);
-        }
-        else if(previous != null) {
-            previous.cutControllerStack(remaining - 1);
-        }
-    }
-
+    /**
+     * Adds a new AllController as Successor of the active SubController and activates it. (recursive)
+     */
     public void addAllCon() {
         if (isActive) {
             isActive = false;
@@ -97,6 +109,21 @@ public abstract class SubController implements ActionListener {
         }
         else if (next != null) {
             next.addAllCon();
+        }
+    }
+
+    /**
+     * Deletes the oldest SubController if the amount of SubControllers is greater than maxControllers. (recursive)
+     * @param remaining remaining amount of SubControllers that dont need to be deleted
+     */
+    private void cutControllerStack(int remaining) {
+        if (remaining <= 0) {
+            previous = null;
+            controller.setRootController(this);
+            System.out.println("SubController amount over limit. Deleting oldest SubController");
+        }
+        else if(previous != null) {
+            previous.cutControllerStack(remaining - 1);
         }
     }
 }

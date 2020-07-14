@@ -133,7 +133,7 @@ public class Library implements Serializable {
         if (!storeExists(id)) {
             Store store = new Store(id);
             stores.add(store);
-            store.storeImage();
+            //store.storeImage();
         }
     }
 
@@ -141,7 +141,7 @@ public class Library implements Serializable {
         if (!platformExists(id)) {
             Platform platform = new Platform(id);
             platforms.add(platform);
-            platform.storeImage();
+            //platform.storeImage();
         }
     }
 
@@ -149,7 +149,7 @@ public class Library implements Serializable {
         if (!gameExists(id)) {
             Genre genre = new Genre(id);
             genres.add(genre);
-            genre.storeImage();
+            //genre.storeImage();
         }
     }
 
@@ -157,7 +157,7 @@ public class Library implements Serializable {
         if (!tagExists(id)) {
             Tag tag = new Tag(id);
             tags.add(tag);
-            tag.storeImage();
+            //tag.storeImage();
         }
     }
 
