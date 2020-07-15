@@ -165,6 +165,14 @@ public class View extends JFrame implements WindowListener {
         gamesList.setBackwardButton(b);
     }
 
+    /**
+     * Shows an connection error message and terminates the program
+     */
+    public void conError() {
+        JOptionPane.showMessageDialog(this, "No connection\nCheck connection and restart", "No connection!", JOptionPane.WARNING_MESSAGE);
+        System.exit(1);
+    }
+
 
     @Override
     public void windowOpened(WindowEvent e) {

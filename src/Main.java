@@ -1,23 +1,13 @@
 import Controller.Controller;
-import Model.Game;
-import Model.Store;
-
-import java.nio.file.FileSystemException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        test();
-    }
-
-    private static void test() {
-        System.out.println(System.nanoTime());
+    public static void main(String[] args){
         try {
-            Controller controller = new Controller();
-        }
-        catch (Exception e) {
-            System.out.println("ERROR");
+            Controller c = new Controller();
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
+
 }

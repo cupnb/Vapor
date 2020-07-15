@@ -36,7 +36,7 @@ public class SearchController extends SubController {
 
         }
         catch (Exception e) {
-            e.printStackTrace();
+            view.conError();
             return new Game[0];
         }
     }
