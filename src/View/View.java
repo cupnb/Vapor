@@ -22,7 +22,7 @@ public class View extends JFrame implements WindowListener {
     private final GameView gameView;
     private final GridView gridView;
 
-    final static private boolean useExternalFlatLaf = true;
+    final static private boolean useExternalFlatLaf = false;
 
 
     /**
