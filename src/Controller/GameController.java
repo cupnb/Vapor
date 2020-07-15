@@ -66,7 +66,7 @@ public class GameController extends SubController {
 
         gameInfo[2] = game.getDescription();
 
-        gameInfo[3] = ((Double)game.getRating()).toString() + " / 10";
+        gameInfo[3] = ((Double)game.getRating()).toString() + " / 5";
         gameInfo[4] = ((Integer)game.getMetacritic()).toString();
 
         String genresString = "";
