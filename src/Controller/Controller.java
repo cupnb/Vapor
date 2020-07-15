@@ -105,7 +105,7 @@ public class Controller implements ActionListener, ListSelectionListener {
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()){
+        if (!e.getValueIsAdjusting() && view.getListString(e.getFirstIndex()) != null){
             try {
                 rootController.addGameCon(library.getGame(view.getListString(e.getFirstIndex())));
             }

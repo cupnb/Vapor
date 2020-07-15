@@ -36,7 +36,7 @@ public abstract class DataIO {
             return (Library) objIn.readObject();
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Library not compatible or damaged! Resetting");
             deleteAllResources();
             return new Library();
         }

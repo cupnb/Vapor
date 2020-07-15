@@ -169,8 +169,7 @@ public class View extends JFrame implements WindowListener {
      * Shows an connection error message and terminates the program
      */
     public void conError() {
-        JOptionPane.showMessageDialog(this, "No connection\nCheck connection and restart", "No connection!", JOptionPane.WARNING_MESSAGE);
-        System.exit(1);
+        JOptionPane.showMessageDialog(this, "No connection\nCheck connection", "No connection!", JOptionPane.WARNING_MESSAGE);
     }
 
 
