@@ -28,7 +28,7 @@ public class GenreController extends SubController {
 
     /**
      * Creates a new GameController to show the Game that's been clicked on
-     * @param event actionCommand: index (in List "games" in GridView`s updateGrid) of the selected Game
+     * @param event actionCommand: index (in array "games" in GridView`s updateGrid) of the selected Game
      */
     public void actionPerformed(ActionEvent event) {
         try {

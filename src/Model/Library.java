@@ -20,7 +20,11 @@ public class Library implements Serializable {
         tags = new ArrayList<>();
     }
 
-
+    /**
+     * Adds a Game to the Library. Adds all properties of the Game to the Library
+     * @param game The Game to be added
+     * @return Success
+     */
     public boolean addGame(Game game) {
         if (!gameExists(game)) {
             games.add(game);
@@ -47,6 +51,11 @@ public class Library implements Serializable {
         return false;
     }
 
+    /**
+     * Removes a Game from the Library. Removes all now needless properties of the Game.
+     * @param game The Game to be removed
+     * @return Success
+     */
     public boolean removeGame(Game game) {
         if (gameExists(game)) {
             games.remove(game);
@@ -100,36 +109,8 @@ public class Library implements Serializable {
         }
     }
 
-    public void addStore(Store store) {
-        if (!storeExists(store.getId())) {
-            stores.add(store);
-            store.storeImage();
-        }
-    }
-
-    public void addPlatform(Platform platform) {
-        if (!platformExists(platform.getId())) {
-            platforms.add(platform);
-            platform.storeImage();
-        }
-    }
-
-    public void addGenre(Genre genre) {
-        if (!gameExists(genre.getId())) {
-            genres.add(genre);
-            genre.storeImage();
-        }
-    }
-
-    public void addTag(Tag tag) {
-        if (!tagExists(tag.getId())) {
-            tags.add(tag);
-            tag.storeImage();
-        }
-    }
-
-
-    public void addStore(int id) {
+    //Images of Stores, Platforms, Genres and Tags are currently not in use
+    private void addStore(int id) {
         if (!storeExists(id)) {
             Store store = new Store(id);
             stores.add(store);
@@ -137,7 +118,7 @@ public class Library implements Serializable {
         }
     }
 
-    public void addPlatform(int id) {
+    private void addPlatform(int id) {
         if (!platformExists(id)) {
             Platform platform = new Platform(id);
             platforms.add(platform);
@@ -145,15 +126,15 @@ public class Library implements Serializable {
         }
     }
 
-    public void addGenre(int id) {
-        if (!gameExists(id)) {
+    private void addGenre(int id) {
+        if (!genreExists(id)) {
             Genre genre = new Genre(id);
             genres.add(genre);
             //genre.storeImage();
         }
     }
 
-    public void addTag(int id) {
+    private void addTag(int id) {
         if (!tagExists(id)) {
             Tag tag = new Tag(id);
             tags.add(tag);
@@ -162,7 +143,7 @@ public class Library implements Serializable {
     }
 
 
-    public boolean storeExists(int id) {
+    private boolean storeExists(int id) {
         for (Store value : stores) {
             if (value.equals(id)) {
                 return true;
@@ -171,7 +152,7 @@ public class Library implements Serializable {
         return false;
     }
 
-    public boolean platformExists(int id) {
+    private boolean platformExists(int id) {
         for (Platform value : platforms) {
             if (value.equals(id)) {
                 return true;
@@ -180,7 +161,7 @@ public class Library implements Serializable {
         return false;
     }
 
-    public boolean genreExists(int id) {
+    private boolean genreExists(int id) {
         for (Genre value : genres) {
             if (value.equals(id)) {
                 return true;
@@ -189,7 +170,7 @@ public class Library implements Serializable {
         return false;
     }
 
-    public boolean tagExists(int id) {
+    private boolean tagExists(int id) {
         for (Tag value : tags) {
             if (value.equals(id)) {
                 return true;
@@ -198,16 +179,7 @@ public class Library implements Serializable {
         return false;
     }
 
-    public boolean gameExists(int id) {
-        for (Game value : games) {
-            if (value.equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean gameExists(Game game) {
+    private boolean gameExists(Game game) {
         for (Game value : games) {
             if (value.equals(game)) {
                 return true;
@@ -217,6 +189,10 @@ public class Library implements Serializable {
     }
 
 
+    /**
+     * @param id Rawg id of the Game
+     * @return The Game
+     */
     public Game getGame(int id) {
         for (Game game : games) {
             if (game.equals(id)) {
@@ -226,6 +202,10 @@ public class Library implements Serializable {
         return new Game(id);
     }
 
+    /**
+     * @param name Name of the Game
+     * @return The Game
+     */
     public Game getGame(String name) {
         for (Game game : games) {
             if (game.getName().equals(name)) {
@@ -235,6 +215,9 @@ public class Library implements Serializable {
         throw new IndexOutOfBoundsException("Did not find Game Object of name " + name);
     }
 
+    /**
+     * @return Array of all Games
+     */
     public Game[] getAllGames() {
         Object[] objects = games.toArray();
 
@@ -247,6 +230,9 @@ public class Library implements Serializable {
         return games;
     }
 
+    /**
+     * @return Array of all Game names in alphabetical order
+     */
     public String[] getAllGameNames() {
         String[] names = new String[games.size()];
         for (int i = 0; i < games.size(); i++) {
@@ -256,6 +242,10 @@ public class Library implements Serializable {
         return names;
     }
 
+    /**
+     * @param id Rawg id of the Store
+     * @return The Store
+     */
     public Store getStore(int id) {
         for (Store store : stores) {
             if (store.equals(id)) {
@@ -265,6 +255,10 @@ public class Library implements Serializable {
         return new Store(id);
     }
 
+    /**
+     * @param id Rawg id of the Platform
+     * @return The Platform
+     */
     public Platform getPlatform(int id) {
         for (Platform platform : platforms) {
             if (platform.equals(id)) {
@@ -274,6 +268,10 @@ public class Library implements Serializable {
         return new Platform(id);
     }
 
+    /**
+     * @param id Rawg id of the Tag
+     * @return The Tag
+     */
     public Tag getTag(int id) {
         for (Tag tag : tags) {
             if (tag.equals(id)) {
@@ -283,6 +281,10 @@ public class Library implements Serializable {
         return new Tag(id);
     }
 
+    /**
+     * @param id Rawg id of the Genre
+     * @return The Genre
+     */
     public Genre getGenre(int id) {
         for (Genre genre : genres) {
             if (genre.equals(id)) {
@@ -292,6 +294,9 @@ public class Library implements Serializable {
         return new Genre(id);
     }
 
+    /**
+     * @return All Games containing the given Store
+     */
     public Game[] getGamesFrom(Store store) {
         ArrayList<Game> result = new ArrayList<>();
         for (Game game : games) {
@@ -305,6 +310,9 @@ public class Library implements Serializable {
         return toArray(result);
     }
 
+    /**
+     * @return All Games containing the given Tag
+     */
     public Game[] getGamesFrom(Tag tag) {
         ArrayList<Game> result = new ArrayList<>();
         for (Game game : games) {
@@ -318,6 +326,9 @@ public class Library implements Serializable {
         return toArray(result);
     }
 
+    /**
+     * @return All Games containing the given Genre
+     */
     public Game[] getGamesFrom(Genre genre) {
         ArrayList<Game> result = new ArrayList<>();
         for (Game game : games) {
@@ -331,6 +342,9 @@ public class Library implements Serializable {
         return toArray(result);
     }
 
+    /**
+     * @return All Games containing the given Platform
+     */
     public Game[] getGamesFrom(Platform platform) {
         ArrayList<Game> result = new ArrayList<>();
         for (Game game : games) {

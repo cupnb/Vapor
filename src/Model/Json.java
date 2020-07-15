@@ -101,7 +101,7 @@ public class Json {
 
         loop: while (true) { //Go through every entry in the List
             verifyIndex(str, s);
-            switch (str.charAt(s)) { //First Char of the current entry
+            switch (str.charAt(s)) { //First Char of the current element
                 case '"': //Its a String
                     e = getSubString(str, s);
                     result.add(str.substring(s + 1, e));
@@ -179,14 +179,14 @@ public class Json {
     }
 
 
-    private void verifyIndex(String str, int index) {
+    private void verifyIndex(String str, int index) { //Verify that the index is not out of range
         if(index >= str.length()) {
             throw new IllegalArgumentException("Index out of range");
         }
     }
 
 
-    private void verifyChar(String str, int index, char ch) {
+    private void verifyChar(String str, int index, char ch) { //Verify a char at a given index
         verifyIndex(str, index);
         if(str.charAt(index) != ch) {
             throw new IllegalArgumentException(String.format("Expected %c at %d", ch, index));
@@ -200,13 +200,13 @@ public class Json {
             verifyIndex(str, i);
             char currentChar = str.charAt(i);
             switch (currentChar) {
-                case '{':
+                case '{': //Skip the inner Json
                     i = getSubJson(str, i);
                     i++;
                     break;
-                case '}':
+                case '}': //This is the end of the Json
                     return i;
-                case '"':
+                case '"': //Skip the String
                     i = getSubString(str, i);
                     i++;
                     break;
@@ -221,9 +221,9 @@ public class Json {
         int i = start + 1;
         while (true) {
             verifyIndex(str, i);
-            if (str.charAt(i) == '"') {
+            if (str.charAt(i) == '"') { //Probably the end of the String
                 if (i > 0) {
-                    if (str.charAt(i - 1) != '\\') {
+                    if (str.charAt(i - 1) != '\\') { // \" does not count
                         return i;
                     }
                 }
@@ -235,7 +235,11 @@ public class Json {
         }
     }
 
-
+    /**
+     * Returns the Value of a given Key
+     * @param key The Key
+     * @return The Value (nullable)
+     */
     public Object getContent(String key) {
         return content.get(key);
     }

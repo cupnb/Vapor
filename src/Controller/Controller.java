@@ -58,8 +58,8 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Overrides the Root-SubController.
-     * @param controller The new Root
+     * Overrides the root-SubController.
+     * @param controller The new root
      */
     public void setRootController(SubController controller) {
         rootController = controller;
@@ -67,7 +67,7 @@ public class Controller implements ActionListener, ListSelectionListener {
 
 
     /**
-     * Handles following User input:
+     * Handles following user input:
      * - Search button was pressed
      * - Home button was pressed
      * - Back button was pressed
@@ -99,7 +99,7 @@ public class Controller implements ActionListener, ListSelectionListener {
     }
 
     /**
-     * Handles following User input:
+     * Handles following user input:
      * - Game in the GameList was selected
      * @param e ListSelectionEvent
      */

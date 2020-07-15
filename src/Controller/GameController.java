@@ -103,10 +103,10 @@ public class GameController extends SubController {
     }
 
     /**
-     * Handles following User input:
+     * Handles following user input:
      * - One of the Game properties was pressed
-     * - Add or Delete Button was pressed
-     * - The Similar Games Button was pressed
+     * - Add or "Delete" button was pressed
+     * - The "Similar Games" button was pressed
      * @param event ActionEvent of form: [type of button]:[which one exactly] Example: "Tag:3"
      */
     public void actionPerformed(ActionEvent event) {

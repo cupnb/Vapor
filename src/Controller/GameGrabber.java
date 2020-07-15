@@ -29,7 +29,7 @@ public class GameGrabber extends Thread {
 
     /**
      * Creates all Games listed in the Json. Uses multithreading for ultimate speed.
-     * @param json  Result of the Rawg-Request
+     * @param json  Result of the Rawg-request
      * @param library reference to the Library
      * @return Array of finished Games
      */

@@ -27,7 +27,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Activated SubControllers will show up in Main Window.
+     * Activated SubControllers will show up in main window.
      * Only one SubController can be active at the same time.
      */
     public void activate() {
@@ -38,7 +38,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Activates the Successor of the active SubController (recursive)
+     * Activates the successor of the active SubController (recursive)
      */
     public void activateNext() {
         if (isActive) {
@@ -55,7 +55,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Activates the Predecessor of the active SubController (recursive)
+     * Activates the predecessor of the active SubController (recursive)
      */
     public void activatePrevious() {
         if (isActive) {
@@ -72,7 +72,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Adds a new GameController as Successor of the active SubController and activates it. (recursive)
+     * Adds a new GameController as successor of the active SubController and activates it. (recursive)
      * @param game The Game to be shown
      */
     public void addGameCon(Game game) {
@@ -86,7 +86,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Adds a new SearchController as Successor of the active SubController and activates it. (recursive)
+     * Adds a new SearchController as successor of the active SubController and activates it. (recursive)
      * @param query The String to be searched for
      */
     public void addSearchCon(String query) {
@@ -100,7 +100,7 @@ public abstract class SubController implements ActionListener {
     }
 
     /**
-     * Adds a new AllController as Successor of the active SubController and activates it. (recursive)
+     * Adds a new AllController as successor of the active SubController and activates it. (recursive)
      */
     public void addAllCon() {
         if (isActive) {

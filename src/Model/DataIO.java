@@ -11,7 +11,7 @@ public abstract class DataIO {
     final static private String resourcePath = "resources/";
 
     /**
-     * Saves the whole Library as a File.
+     * Saves the whole Library as a file.
      * @param library The Library to be saved
      * @throws IOException Thrown if the saving process failed.
      */
@@ -43,7 +43,7 @@ public abstract class DataIO {
     }
 
     /**
-     * Creates the necessary Folder-System in which images will be stored.
+     * Creates the necessary folder-system in which images will be stored.
      * @throws FileSystemException Thrown if a Folder could not be created. This Error is fatal.
      */
     public static void initFolders() throws FileSystemException {
@@ -61,7 +61,7 @@ public abstract class DataIO {
     }
 
     /**
-     * Deletes all saved Images.
+     * Deletes all saved images.
      */
     public static void deleteAllResources() {
         String[] paths = {"temp/", "image/game/", "image/genre/", "image/platform/",
@@ -84,7 +84,7 @@ public abstract class DataIO {
     }
 
     /**
-     * Deletes all temporarily saved Images.
+     * Deletes all temporarily saved images.
      */
     public static void dumpTempData() {
         File[] files = new File(resourcePath + "temp/").listFiles();
@@ -108,9 +108,9 @@ public abstract class DataIO {
     }
 
     /**
-     * Downloads a Image and saves it temporarily
-     * @param id Rawg id of the Object
-     * @param classString Type of the Object
+     * Downloads a image and saves it temporarily
+     * @param id Rawg id of the object
+     * @param classString Type of the object
      * @param url_string url of the image
      */
     public static void storeTempImage(int id, String classString, String url_string) {
@@ -126,9 +126,9 @@ public abstract class DataIO {
     }
 
     /**
-     * Copies the temporary Image to the permanent Folder. Tries to download the temporary image if its missing.
-     * @param id Rawg id of the Object
-     * @param classString Type of the Object
+     * Copies the temporary image to the permanent folder. Tries to download the temporary image if its missing.
+     * @param id Rawg id of the object
+     * @param classString Type of the object
      * @param url_string url of the image
      * @return success
      */
@@ -155,11 +155,11 @@ public abstract class DataIO {
     }
 
     /**
-     * Loads a temporary Image. Tries to download the image if its missing.
-     * @param id Rawg id of the Object
-     * @param classString Type of the Object
+     * Loads a temporary image. Tries to download the image if its missing.
+     * @param id Rawg id of the object
+     * @param classString Type of the object
      * @param url_string url of the image
-     * @return The requested Image or the noImage if something goes wrong
+     * @return The requested image or the noImage if something goes wrong
      */
     public static BufferedImage loadTempImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
@@ -180,11 +180,11 @@ public abstract class DataIO {
     }
 
     /**
-     * Loads a permanent Image. Tries to download the image if its missing.
-     * @param id Rawg id of the Object
-     * @param classString Type of the Object
+     * Loads a permanent image. Tries to download the image if its missing.
+     * @param id Rawg id of the object
+     * @param classString Type of the object
      * @param url_string url of the image
-     * @return The requested Image or the noImage if something goes wrong
+     * @return The requested image or the noImage if something goes wrong
      */
     public static BufferedImage loadPermImage(int id, String classString, String url_string) {
         if(url_string == null || url_string.equals("")) {
@@ -205,9 +205,9 @@ public abstract class DataIO {
     }
 
     /**
-     * Deletes a permanent Image.
-     * @param id Rawg id of the Object
-     * @param classString Type of the Object
+     * Deletes a permanent image.
+     * @param id Rawg id of the object
+     * @param classString Type of the object
      */
     public static void deleteImage(int id, String classString) {
         File source = new File(String.format("%s/image/%s/%d.jpg", resourcePath, classString, id));
